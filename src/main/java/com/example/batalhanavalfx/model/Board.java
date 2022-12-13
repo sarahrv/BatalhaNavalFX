@@ -1,4 +1,4 @@
-package com.example.batalhanavalfx;
+package com.example.batalhanavalfx.model;
 import java.util.Arrays;
 
     public class Board {

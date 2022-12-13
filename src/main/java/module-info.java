@@ -13,6 +13,8 @@ module com.example.batalhanavalfx {
 
     opens com.example.batalhanavalfx to javafx.fxml;
     exports com.example.batalhanavalfx;
-    exports controller;
-    opens controller to javafx.fxml;
+    exports com.example.batalhanavalfx.controller;
+    opens com.example.batalhanavalfx.controller to javafx.fxml;
+    exports com.example.batalhanavalfx.model;
+    opens com.example.batalhanavalfx.model to javafx.fxml;
 }

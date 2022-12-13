@@ -1,4 +1,4 @@
-package com.example.batalhanavalfx;
+package com.example.batalhanavalfx.model;
 
 public class Barcos {
     private int navio4Canos(){
