@@ -13,7 +13,8 @@
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="voltar" layoutX="226.0" layoutY="263.0" mnemonicParsing="false" onAction="#switchToHelloController" text="Voltar" />
-      <TextField layoutX="176.0" layoutY="194.0" />
+      <Button fx:id="voltar" layoutX="226.0" layoutY="302.0" mnemonicParsing="false" onAction="#switchToHelloController" text="Voltar" />
+      <TextField layoutX="176.0" layoutY="194.0" stylesheets="@css/player.css" />
+      <Button fx:id="proximo" layoutX="220.0" layoutY="252.0" mnemonicParsing="false" text="Próximo" />
    </children>
 </AnchorPane>

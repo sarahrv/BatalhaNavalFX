@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="435.0" prefWidth="498.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.batalhanavalfx.controller.HelloController">
+<VBox fx:id="scenePane" alignment="CENTER" prefHeight="435.0" prefWidth="498.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.batalhanavalfx.controller.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -20,5 +20,5 @@
       </VBox.margin></Label>
     <Button fx:id="jogar" onAction="#switchToPlayerController" text="Jogar" />
    <Button fx:id="ranking" mnemonicParsing="false" onAction="#onRankingAction" text="Ranking" />
-   <Button fx:id="sair" mnemonicParsing="false" onAction="#onSairAction" text="Sair" />
+    <Button fx:id="sair" mnemonicParsing="false" onAction="#sairTelaAction" text="Sair" />
 </VBox>

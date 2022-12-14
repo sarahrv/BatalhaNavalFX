@@ -16,9 +16,11 @@ public class PlayerController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private String name;
+    private String playerName;
     @FXML
     private Button voltar;
+    @FXML
+    private Button proximo;
 
 
 
@@ -31,9 +33,29 @@ public class PlayerController {
         stage.show();
     }
 
-    public void playerName(){
+    public void name(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite seu nome");
+        playerName = input.nextLine();
+
+        if (playerName.length()<=2 || playerName.length()>=16){
+            System.out.println("Digite um nome entre 3 e 15 caracteres.");
+            playerName = input.nextLine();
+        }
+    }
+
+    /*public void playerName(){
         Scanner name1 = new Scanner(System.in);
         System.out.println("Qual o seu nome? ");
-        name = name1.nextLine();
-    }
+        playerName = name1.nextLine();
+        System.out.println("Digite seu nome");
+        playerName = input.nextLine();
+
+        if (playerName.length()<=2 || playerName.length()>=16){
+            while (playerName.length()<=2 || playerName.length()>=16){
+                System.out.println("Digite um nome entre 3 e 15 caracteres.");
+                playerName = input.nextLine();
+            }
+        }
+    }*/
 }
