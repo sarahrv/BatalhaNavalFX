@@ -24,20 +24,9 @@ public class HelloController {
 
     @FXML
     private Button ranking;
-
-    @FXML
-   // private Button sair;
-
     private Scene scene;
     private Parent root;
     private Stage stage;
-
-
-
-
-    public void onJogarAction(){
-        System.out.println("Jogar");
-    }
 
     public void onRankingAction(){
         System.out.println("Ranking");

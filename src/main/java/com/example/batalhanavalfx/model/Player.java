@@ -3,18 +3,30 @@ package com.example.batalhanavalfx.model;
 import java.util.Scanner;
 
 public class Player {
-    private String name;
+    private String name1;
+    private String name2;
 
     public void playerName(){
         Scanner name1 = new Scanner(System.in);
-        System.out.println("Qual o seu nome? ");
-        name = name1.nextLine();
+        Scanner name2 = new Scanner(System.in);
+        System.out.println("Qual o seu nome, jogador 1? ");
+        this.name1 = name1.nextLine();
 
-        while (name.length()<=2 || name.length()>=16){
+        while (this.name1.length()<=2 || this.name1.length()>=16){
             System.out.println("Digite um nome entre 3 e 15 caracteres.");
-            name = name1.nextLine();
+            this.name1 = name1.nextLine();
         }
+        System.out.println("Qual o seu nome, jogador 2? ");
+        this.name2 = name2.nextLine();
+
+        while (this.name2.length()<=2 || this.name2.length()>=16){
+            System.out.println("Digite um nome entre 3 e 15 caracteres.");
+            this.name2 = name1.nextLine();
+        }
+
     }
+
+
 
 
     public static void main(String[] args) {
