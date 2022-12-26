@@ -1,24 +1,15 @@
 package com.example.batalhanavalfx.controller;
 
-import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
+import javafx.scene.layout.GridPane;
 
-import java.io.IOException;
 public class TabuleiroController {
-        private Stage stage;
-        private Scene scene;
-        private Parent root;
-        private String playerName;
+    @FXML private GridPane board;
 
-
-
-
-
-
+    public void getButtonsXY(EventHandler event){
+        //por que nao funciona?
+            }
 }
