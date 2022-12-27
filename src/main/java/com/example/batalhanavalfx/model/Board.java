@@ -6,7 +6,9 @@ import javafx.scene.control.Button;
 import java.util.Arrays;
 import javafx.scene.layout.Pane;
 
-    public class Board extends Stage {
+    public class Board {
+
+
 
     }
 
