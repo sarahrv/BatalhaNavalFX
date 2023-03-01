@@ -1,6 +1,6 @@
 package com.example.batalhanavalfx.model;
 
-public class Barcos {
+/* public class Barcos {
     private int saudeDoNavio;
     private boolean navioMorto, vertical;
     private Barcos barco;
@@ -16,13 +16,14 @@ public class Barcos {
     }
 
     public void navio3Canos(Barcos tipo){
-        if(tipo == tresCanos){
-            for(int i=1;i<4;i++){
+        if(tipo == tresCanos) {
+            for (int i = 1; i < 4; i++) {
                 System.out.println("X");
-            }
-    }
 
-    public void navio2Canos(Barcos tipo){
+            }
+        }
+    }
+        public void navio2Canos(Barcos tipo){
             if(tipo == doisCanos){
                 for(int i=1;i<3;i++){
                     System.out.println("X");
@@ -60,3 +61,4 @@ public class Barcos {
     }
 
 }
+*/
