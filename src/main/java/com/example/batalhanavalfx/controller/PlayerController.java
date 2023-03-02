@@ -25,8 +25,8 @@ public class PlayerController {
 
 
 
-    public void switchToHelloController(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/batalhanavalfx/view/hello-view.fxml"));
+    public void switchToMenuController(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/batalhanavalfx/view/menu-view.fxml"));
         stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
         scene =  new Scene(root);
         stage.setScene(scene);
@@ -44,7 +44,7 @@ public class PlayerController {
         }
     }
     public void switchToTabuleiroController(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/batalhanavalfx/view/tabuleiroController.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/batalhanavalfx/view/bombas-view.fxml"));
         stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
         scene =  new Scene(root);
         stage.setScene(scene);

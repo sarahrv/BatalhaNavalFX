@@ -10,13 +10,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloController {
+public class MenuController {
     @FXML
     private Label welcomeText;
     @FXML
@@ -34,7 +33,7 @@ public class HelloController {
 
 
     public void switchToPlayerController(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/batalhanavalfx/view/playerController.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/batalhanavalfx/view/player-view.fxml"));
         stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
         scene =  new Scene(root);
         stage.setScene(scene);

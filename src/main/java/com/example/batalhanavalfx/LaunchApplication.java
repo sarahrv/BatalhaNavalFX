@@ -9,10 +9,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class LaunchApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("view/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LaunchApplication.class.getResource("view/menu-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 500, 400);
         stage.setTitle("Batalha Naval");
         stage.setScene(scene);
