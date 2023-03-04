@@ -6,7 +6,10 @@ import javafx.scene.control.Button;
 import java.util.Arrays;
 import javafx.scene.layout.Pane;
 
-    public class Board {
+    public class Board extends Celula{
+
+        //metodo para definir turno dos usuarios (se a celula)
+        //
 
 
 
