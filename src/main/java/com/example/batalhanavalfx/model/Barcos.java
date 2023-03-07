@@ -1,64 +1,15 @@
 package com.example.batalhanavalfx.model;
 
-/* public class Barcos {
-    private int saudeDoNavio;
-    private boolean navioMorto, vertical;
-    private Barcos barco;
+public class Barcos extends Celula{
+    private int celulasDoNavio;
+    private boolean navioMorto;
 
-    public void checkBarcoType(Barcos barco){
-        //receber um input que dite o tipo do barco e retornar esse tipo
-    }
-    public void navio4Canos(Barcos tipo){
-        if(tipo == quatroCanos){
-            for(int i=1;i<5;i++){
-                System.out.println("X");
-        }   }
+
+    public boolean levouBomba(){
+        //o return é apenas ilustrativo, o método deve retornar se o navio inteiro (não só a celula) levou bomba ou não.
+        //se o numero de celulaBombada == o numero de celulasDoNavio, levou bomba retorna true, navioMorto == true.
+        return true;
     }
 
-    public void navio3Canos(Barcos tipo){
-        if(tipo == tresCanos) {
-            for (int i = 1; i < 4; i++) {
-                System.out.println("X");
-
-            }
-        }
-    }
-        public void navio2Canos(Barcos tipo){
-            if(tipo == doisCanos){
-                for(int i=1;i<3;i++){
-                    System.out.println("X");
-            }
-        }
-
-    }
-
-    public void navio1Cano(Barcos tipo){
-            if(tipo == umCano){
-                System.out.println("X");
-            }
-        }
-
-    }
-
-    public void portaAvioes(Barcos tipo){
-        if(tipo == portaAvioes){
-            for (int i=0;i<=2;i++) {
-                for (int j = 0; j <= 2; j++) {
-                    if (i == 0 || i >= 1 && i <= 2 && j == 1) {
-                        System.out.print("*");
-
-                    } else {
-                        System.out.print(" ");
-
-                    }
-                }
-                System.out.println();
-            }
-        }
-    }
-    public void levouBomba(){
-
-    }
 
 }
-*/

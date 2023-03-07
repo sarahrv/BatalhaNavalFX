@@ -25,12 +25,6 @@ public class Player {
         }
 
     }
-    public boolean checkVitoria(int playerUmBarcos, int playerDoisBarcos ){
-        //checa a quantidade de barcos de cada jogador
-       // return boolean, o retorno true atual é só pra não dar erro;
-        return true;
-    }
-
 
 
 
