@@ -1,6 +1,6 @@
 package com.example.batalhanavalfx.model;
 
-public class Tabuleiro extends Celula{
+public class Tabuleiro {
 
     public void turnoJogadores(){
         //metodo para definir turno dos jogadores (contar numero de celulas clicadas no BombasController, se for igual a 3, passa pra o outro jogador)

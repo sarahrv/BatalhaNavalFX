@@ -2,11 +2,15 @@ package com.example.batalhanavalfx.model;
 
 
 public class Celula {
-
-    //trazer array de array com rows e collumns dos navios posicionados (DefesaController)
-    //trazer array de array com row e collumn dos botões que estão sendo clicados (BombasController)
     protected boolean celulaBombada, celulaComAgua, celulaComNavio, celulaComNavioBombado, celulaClicada;
 
+    private int row;
+    private int column;
+
+    public Celula(int row, int column) {
+        this.row = row;
+        this.column = column;
+    }
 
 
 }

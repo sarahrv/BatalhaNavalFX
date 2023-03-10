@@ -1,6 +1,6 @@
 package com.example.batalhanavalfx.model;
 
-public class Barcos extends Celula{
+public class Barcos{
     private int celulasDoNavio;
     private boolean navioMorto;
 

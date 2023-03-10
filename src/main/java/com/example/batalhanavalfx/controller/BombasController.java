@@ -8,15 +8,9 @@ import javafx.scene.layout.GridPane;
 public class BombasController {
     @FXML private GridPane board;
 
-    public int getRow() {
-        return row;
-    }
 
     private int row;
 
-    public int getCollumn() {
-        return collumn;
-    }
 
     private int collumn;
 

@@ -15,7 +15,6 @@ import java.util.Scanner;
 public class PlayerController {
     private Stage stage;
     private Scene scene;
-    private Parent root;
     private String playerName;
     @FXML
     private Button voltar;
@@ -51,11 +50,15 @@ public class PlayerController {
         stage.show();
     }
     public void switchToDefesaController(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/batalhanavalfx/view/defesa-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/defesa-view.fxml"));
+        Parent root = loader.load();
+        DefesaController controller = loader.getController(); // Get the controller instance
+        controller.initialize(true);
         stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
         scene =  new Scene(root);
         stage.setScene(scene);
         stage.show();
+
     }
 
     /*public void playerName(){
