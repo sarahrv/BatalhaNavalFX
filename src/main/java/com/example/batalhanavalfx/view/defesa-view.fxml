@@ -141,17 +141,17 @@
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="9" />
          </children>
         </GridPane>
-        <ImageView fx:id="barcoUm" fitHeight="45.0" fitWidth="117.0" layoutX="721.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="barcoUmCano" fitHeight="45.0" fitWidth="117.0" layoutX="721.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@navio.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="32.0" fitWidth="72.0" layoutX="766.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="barcoDoisCanos" fitHeight="32.0" fitWidth="72.0" layoutX="766.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@navio.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="55.0" fitWidth="165.0" layoutX="687.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="barcoTresCanos" fitHeight="55.0" fitWidth="165.0" layoutX="687.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@navio.png" />
             </image>

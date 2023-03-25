@@ -52,7 +52,7 @@ public class PlayerController {
     public void switchToDefesaController(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/defesa-view.fxml"));
         Parent root = loader.load();
-        DefesaController controller = loader.getController(); // Get the controller instance
+        DefesaController controller = loader.getController();
         controller.initialize(true);
         stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
         scene =  new Scene(root);

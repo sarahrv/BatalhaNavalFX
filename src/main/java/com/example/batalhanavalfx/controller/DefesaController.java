@@ -33,6 +33,15 @@ public class DefesaController {
     @FXML
     private Button[][] proximoBomba;
 
+    @FXML
+    private ImageView barcoUmCano;
+    @FXML
+    private ImageView barcoDoisCanos;
+    @FXML
+    private ImageView barcoTresCanos;
+    @FXML
+    private ImageView barcoQuatroCanos;
+
     /*public DefesaController(AnchorPane anchorPane, ImageView barcoUm, GridPane gridDefesa, Stage stage, Scene scene, Button proximoBomba) {
         this.anchorPane = anchorPane;
         this.barcoUm = barcoUm;
@@ -75,7 +84,7 @@ public class DefesaController {
         //Celula celulaPlayerDois = new Celula(0,0);
         this.celulasP1 = new Label[10][10];
         this.celulasP2 = new Label[10][10];
-        Barcos b = new Barcos();
+        Barcos barcos = new Barcos();
         for (Node node : gridDefesa.getChildren()) {
             if (node instanceof StackPane) {
                 StackPane stackPane = (StackPane) node;
@@ -93,65 +102,47 @@ public class DefesaController {
                     if (db.hasImage()) {
                         ImageView droppedImageView = new ImageView(db.getImage());
                         stackPane.getChildren().add(droppedImageView);
-                        int rowIndex = GridPane.getRowIndex(stackPane);//problema
+                        int rowIndex = GridPane.getRowIndex(stackPane);
                         int colIndex = GridPane.getColumnIndex(stackPane);
+                        String tipoBarco = ((Node) event.getGestureSource()).getId();
                         for(int i = 0; i < 10; i++){
                             for(int j = 0; j < 10; j++){
                                 celulasP1[i][j] = new Label("0");
                                 celulasP2[i][j] = new Label("0");
                             }
                         }
-                        if (isPlayerUm) {
-                            celulasP1[rowIndex][colIndex].setText("1");
-                            //celulaPlayerUm.print(new Celula(rowIndex, colIndex));
-                            if(b.isNavio2Canos()) {
+                        if(isPlayerUm){
+                            if ("barcoUmCano".equals(tipoBarco)) {
+                                celulasP1[rowIndex][colIndex].setText("1");
+                                System.out.println("1cano");
+                            } else if ("barcoDoisCanos".equals(tipoBarco)) {
                                 celulasP1[rowIndex][colIndex].setText("2");
-                                celulasP1[rowIndex][colIndex + 1].setText("2");
-                            } else if (b.isNavio3Canos()){
+                                celulasP1[rowIndex + 1][colIndex].setText("2");
+                                System.out.println("2canos");
+                            } else if ("barcoTresCanos".equals(tipoBarco)) {
                                 celulasP1[rowIndex][colIndex].setText("3");
-                                celulasP1[rowIndex][colIndex + 1].setText("3");
-                                celulasP1[rowIndex][colIndex + 2].setText("3");
-                            } else if (b.isNavio4Canos()){
+                                celulasP1[rowIndex + 1][colIndex].setText("3");
+                                celulasP1[rowIndex + 2][colIndex].setText("3");
+                                System.out.println("3anos");
+                            } else if ("barcoQuatroCanos".equals(tipoBarco)) {
                                 celulasP1[rowIndex][colIndex].setText("4");
-                                celulasP1[rowIndex][colIndex + 1].setText("4");
-                                celulasP1[rowIndex][colIndex + 2].setText("4");
-                                celulasP1[rowIndex][colIndex + 3].setText("4");
-                            }
-                            celulasP1[rowIndex][colIndex].setStyle("-fx-text-fill: TRANSPARENT");
-                            //teste
-                            System.out.println("player um row " + rowIndex + " column " + colIndex);
-                        } else {
-                            //celulaPlayerDois.print(new Celula(rowIndex, colIndex));
-                            celulasP2[0][0].setText("1");
-                            //celulaPlayerUm.print(new Celula(rowIndex, colIndex));
-                            if(b.isNavio2Canos()) {
-                                celulasP2[rowIndex][colIndex].setText("2");
-                                celulasP2[rowIndex][colIndex + 1].setText("2");
-                            } else if (b.isNavio3Canos()){
-                                celulasP2[rowIndex][colIndex].setText("3");
-                                celulasP2[rowIndex][colIndex + 1].setText("3");
-                                celulasP2[rowIndex][colIndex + 2].setText("3");
-                            } else if (b.isNavio4Canos()){
-                                celulasP2[rowIndex][colIndex].setText("4");
-                                celulasP2[rowIndex][colIndex + 1].setText("4");
-                                celulasP2[rowIndex][colIndex + 2].setText("4");
-                                celulasP2[rowIndex][colIndex + 3].setText("4");
+                                celulasP1[rowIndex + 1][colIndex].setText("4");
+                                celulasP1[rowIndex + 2][colIndex].setText("4");
                             }
                             celulasP2[rowIndex][colIndex].setStyle("-fx-text-fill: TRANSPARENT");
-                            //teste
-                            System.out.println("player dois row " + rowIndex + " column " + colIndex);
-                        }
-                        //lembrar de fazer null == valor real
-                    }
+                            System.out.println("player um row " + rowIndex + " column " + colIndex);
+                        }}
+
                     event.setDropCompleted(success);
                     event.consume();
                 });
             }
         }
 
-        for (Node node : anchorPane.getChildren()) {
+        for(Node node: anchorPane.getChildren()) {
             if (node instanceof ImageView) {
                 ImageView imageView = (ImageView) node;
+
 
                 imageView.setOnDragDetected(event -> {
                     Dragboard db = imageView.startDragAndDrop(TransferMode.MOVE);
