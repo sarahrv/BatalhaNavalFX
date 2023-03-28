@@ -17,6 +17,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DefesaController {
 
@@ -42,6 +44,8 @@ public class DefesaController {
     @FXML
     private ImageView barcoQuatroCanos;
 
+    private List<Barcos> barcos = new ArrayList<>();
+
     /*public DefesaController(AnchorPane anchorPane, ImageView barcoUm, GridPane gridDefesa, Stage stage, Scene scene, Button proximoBomba) {
         this.anchorPane = anchorPane;
         this.barcoUm = barcoUm;
@@ -55,8 +59,6 @@ public class DefesaController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/bomba-view.fxml"));
         Parent root = loader.load();
         BombasController controller = loader.getController();
-        controller.setLabelP1(this.celulasP1);
-        controller.setLabelP2(this.celulasP2);
         controller.setPlayerUm(true);
         //Parent root = FXMLLoader.load(getClass().getResource("/com/example/batalhanavalfx/view/bomba-view.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -84,7 +86,6 @@ public class DefesaController {
         //Celula celulaPlayerDois = new Celula(0,0);
         this.celulasP1 = new Label[10][10];
         this.celulasP2 = new Label[10][10];
-        Barcos barcos = new Barcos();
         for (Node node : gridDefesa.getChildren()) {
             if (node instanceof StackPane) {
                 StackPane stackPane = (StackPane) node;
@@ -105,29 +106,19 @@ public class DefesaController {
                         int rowIndex = GridPane.getRowIndex(stackPane);
                         int colIndex = GridPane.getColumnIndex(stackPane);
                         String tipoBarco = ((Node) event.getGestureSource()).getId();
-                        for(int i = 0; i < 10; i++){
-                            for(int j = 0; j < 10; j++){
-                                celulasP1[i][j] = new Label("0");
-                                celulasP2[i][j] = new Label("0");
-                            }
-                        }
+
                         if(isPlayerUm){
                             if ("barcoUmCano".equals(tipoBarco)) {
-                                celulasP1[rowIndex][colIndex].setText("1");
+
+                                 //Barcos barco = new Barcos(1,);
+
                                 System.out.println("1cano");
                             } else if ("barcoDoisCanos".equals(tipoBarco)) {
-                                celulasP1[rowIndex][colIndex].setText("2");
-                                celulasP1[rowIndex + 1][colIndex].setText("2");
                                 System.out.println("2canos");
                             } else if ("barcoTresCanos".equals(tipoBarco)) {
-                                celulasP1[rowIndex][colIndex].setText("3");
-                                celulasP1[rowIndex + 1][colIndex].setText("3");
-                                celulasP1[rowIndex + 2][colIndex].setText("3");
                                 System.out.println("3anos");
                             } else if ("barcoQuatroCanos".equals(tipoBarco)) {
-                                celulasP1[rowIndex][colIndex].setText("4");
-                                celulasP1[rowIndex + 1][colIndex].setText("4");
-                                celulasP1[rowIndex + 2][colIndex].setText("4");
+
                             }
                             celulasP2[rowIndex][colIndex].setStyle("-fx-text-fill: TRANSPARENT");
                             System.out.println("player um row " + rowIndex + " column " + colIndex);

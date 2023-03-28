@@ -6,7 +6,12 @@ import javafx.event.ActionEvent;
 public class Tabuleiro {
     private Player jogador1;
     private Player jogador2;
-    private Player jogadorAtual;
+
+    private Celula[][] matrizCelulas;
+
+    public void defineTabuleiro(){
+        //definir matriz
+    }
 
     public void turnoJogadores() {
         //metodo para definir turno dos jogadores (contar numero de celulas clicadas no BombasController, se for igual a 3, passa pra o outro jogador)
