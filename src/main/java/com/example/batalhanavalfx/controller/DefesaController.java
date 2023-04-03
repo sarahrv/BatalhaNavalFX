@@ -44,16 +44,7 @@ public class DefesaController {
     @FXML
     private ImageView barcoQuatroCanos;
 
-    private List<Barcos> barcos = new ArrayList<>();
-
-    /*public DefesaController(AnchorPane anchorPane, ImageView barcoUm, GridPane gridDefesa, Stage stage, Scene scene, Button proximoBomba) {
-        this.anchorPane = anchorPane;
-        this.barcoUm = barcoUm;
-        this.gridDefesa = gridDefesa;
-        this.stage = stage;
-        this.scene = scene;
-        this.proximoBomba = proximoBomba;
-    }*/
+    Tabuleiro tabuleiro = new Tabuleiro();
 
     public void handleProximoBomba(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/bomba-view.fxml"));
@@ -109,18 +100,34 @@ public class DefesaController {
 
                         if(isPlayerUm){
                             if ("barcoUmCano".equals(tipoBarco)) {
-
-                                 //Barcos barco = new Barcos(1,);
-
+                                Barcos barco = new Barcos(1);
+                                Celula celula = new Celula(rowIndex,colIndex, 1);
+                                barco.getCelulaOcupada().add(celula);
+                                tabuleiro.colocaBracosNaMatriz(barco);
                                 System.out.println("1cano");
                             } else if ("barcoDoisCanos".equals(tipoBarco)) {
                                 System.out.println("2canos");
+                                Barcos barco = new Barcos(2);
+                                Celula celula = new Celula(rowIndex,colIndex, 2);
+                                Celula celulaDois = new Celula(rowIndex + 1,colIndex, 1);
+                                barco.getCelulaOcupada().add(celula);
+                                barco.getCelulaOcupada().add(celulaDois);
+                                tabuleiro.colocaBracosNaMatriz(barco);
+
                             } else if ("barcoTresCanos".equals(tipoBarco)) {
+                                System.out.println("2canos");
+                                Barcos barco = new Barcos(3);
+                                Celula celula = new Celula(rowIndex,colIndex, 3);
+                                Celula celulaDois = new Celula(rowIndex + 1,colIndex, 1);
+                                Celula celulaTres = new Celula(rowIndex + 2,colIndex, 1);
+                                barco.getCelulaOcupada().add(celula);
+                                barco.getCelulaOcupada().add(celulaDois);
+                                barco.getCelulaOcupada().add(celulaTres);
+                                tabuleiro.colocaBracosNaMatriz(barco);
                                 System.out.println("3anos");
                             } else if ("barcoQuatroCanos".equals(tipoBarco)) {
 
                             }
-                            celulasP2[rowIndex][colIndex].setStyle("-fx-text-fill: TRANSPARENT");
                             System.out.println("player um row " + rowIndex + " column " + colIndex);
                         }}
 
@@ -154,7 +161,6 @@ public class DefesaController {
 
 
     }
-    // fazer for no método de ataque pra
 
     public AnchorPane getAnchorPane() {
         return anchorPane;

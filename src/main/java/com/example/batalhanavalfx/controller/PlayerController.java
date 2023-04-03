@@ -42,13 +42,7 @@ public class PlayerController {
             playerName = input.nextLine();
         }
     }
-    public void switchToTabuleiroController(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/batalhanavalfx/view/bombas-view.fxml"));
-        stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene =  new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
     public void switchToDefesaController(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/defesa-view.fxml"));
         Parent root = loader.load();

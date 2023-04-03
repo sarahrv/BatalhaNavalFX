@@ -5,13 +5,15 @@ import javafx.scene.layout.GridPane;
 
 
 public class Celula {
-    protected boolean celulaBombada, celulaComAgua, celulaComNavio, celulaComNavioBombado, celulaClicada;
     private int row;
     private int collumn;
 
-    public Celula(int row, int column) {
+    private int valorCelula;
+
+    public Celula(int row, int column, int valorCelula) {
         this.row = row;
         this.collumn = column;
+        this.valorCelula = valorCelula;
     }
 
 
@@ -19,6 +21,22 @@ public class Celula {
         /*Barcos b1 = new Barcos();
         DefesaController d = new DefesaController();
         for (int i = 0; i < d.getGridDefesa())*/
+    }
+
+    public int getCollumn() {
+        return collumn;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getValorCelula() {
+        return valorCelula;
+    }
+
+    public void setValorCelula(int valorCelula) {
+        this.valorCelula = valorCelula;
     }
 
     /* Button clickedButton = (Button) event.getSource();

@@ -3,12 +3,26 @@ package com.example.batalhanavalfx.model;
 import java.util.ArrayList;
 
 public class Barcos {
-    private ArrayList<Celula> celulaOcupada = new ArrayList<>();
+
+
+    private ArrayList<Celula> celulaOcupada;
+
     private int tamanho;
 
-    public Barcos(int tamanho, ArrayList<Celula> celulaOcupada){
+    public Barcos(int tamanho){
         this.tamanho = tamanho;
+        celulaOcupada = new ArrayList<>();
+
+    }
+    public ArrayList<Celula> getCelulaOcupada() {
+        return celulaOcupada;
+    }
+
+    public void setCelulaOcupada(ArrayList<Celula> celulaOcupada) {
         this.celulaOcupada = celulaOcupada;
+    }
+    public void defineTamanho(){
+
     }
 
     public boolean levouBomba() {
@@ -17,4 +31,8 @@ public class Barcos {
         return true;
     }
 
+
+    public int getTamanho() {
+        return this.tamanho;
+    }
 }

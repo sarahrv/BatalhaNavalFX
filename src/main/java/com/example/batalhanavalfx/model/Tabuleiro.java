@@ -3,14 +3,38 @@ package com.example.batalhanavalfx.model;
 import com.example.batalhanavalfx.controller.BombasController;
 import javafx.event.ActionEvent;
 
+import java.util.ArrayList;
+
 public class Tabuleiro {
     private Player jogador1;
     private Player jogador2;
 
     private Celula[][] matrizCelulas;
 
+    public Tabuleiro() {
+        this.matrizCelulas = new Celula[10][10];
+        defineTabuleiro();
+    }
+
+
     public void defineTabuleiro(){
-        //definir matriz
+        for (int row = 0; row < 10; row++) {
+            for (int column = 0; column < 10; column++) {
+                matrizCelulas[row][column] = new Celula(row, column, 0);
+            }
+        }
+    }
+
+    public void colocaBracosNaMatriz(Barcos barco) {
+        ArrayList<Celula> celulaOcupada = barco.getCelulaOcupada();
+        int valor = barco.getTamanho();
+        for (Celula cell : celulaOcupada) {
+            int row = cell.getRow();
+            int column = cell.getCollumn();
+            matrizCelulas[row][column].setValorCelula(valor);
+            System.out.println(matrizCelulas[row][column].getValorCelula());
+        }
+
     }
 
     public void turnoJogadores() {
