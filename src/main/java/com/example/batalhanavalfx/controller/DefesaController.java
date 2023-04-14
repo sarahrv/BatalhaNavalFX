@@ -21,9 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DefesaController {
-
-    private Label[][] celulasP1;
-    private Label[][] celulasP2;
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -71,12 +68,6 @@ public class DefesaController {
     }
 
     public void initialize(boolean isPlayerUm) {
-        //ArrayList<Celula> celulaPlayerUm = new ArrayList<>();
-        //ArrayList<Celula> celulaPlayerDois = new ArrayList<>();
-        //Celula celulaPlayerUm = new Celula(0,0);
-        //Celula celulaPlayerDois = new Celula(0,0);
-        this.celulasP1 = new Label[10][10];
-        this.celulasP2 = new Label[10][10];
         for (Node node : gridDefesa.getChildren()) {
             if (node instanceof StackPane) {
                 StackPane stackPane = (StackPane) node;

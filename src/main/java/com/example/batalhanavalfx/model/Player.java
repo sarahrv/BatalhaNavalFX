@@ -3,29 +3,27 @@ package com.example.batalhanavalfx.model;
 import java.util.ArrayList;
 
 public class Player {
+    private String nome;
+    private Tabuleiro tabuleiro;
+    public Tabuleiro getTabuleiro() {
+        return tabuleiro;
+    }
+    public void setTabuleiro(Tabuleiro tabuleiro) {
+        this.tabuleiro = tabuleiro;
+    }
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    private String nome;
 
-    public ArrayList<Barcos> getBarcosDoPlayer() {
-        return barcosDoPlayer;
-    }
 
-    public void setBarcosDoPlayer(ArrayList<Barcos> barcosDoPlayer) {
-        this.barcosDoPlayer = barcosDoPlayer;
-    }
 
-    private ArrayList<Barcos> barcosDoPlayer;
-
-    public Player(String nome, ArrayList<Barcos> barcosDoPlayer) {
+    public Player(String nome, Tabuleiro tabuleiro) {
         this.nome = nome;
-        barcosDoPlayer = new ArrayList<>();
+        this.tabuleiro = tabuleiro;
     }
 
 

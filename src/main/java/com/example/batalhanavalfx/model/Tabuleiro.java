@@ -6,8 +6,6 @@ import javafx.event.ActionEvent;
 import java.util.ArrayList;
 
 public class Tabuleiro {
-    private Player jogador1;
-    private Player jogador2;
 
     private Celula[][] matrizCelulas;
 
