@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
 
 public class MenuController {
     @FXML
@@ -30,7 +31,8 @@ public class MenuController {
 
 
     public void switchToPlayerController(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/batalhanavalfx/view/player-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/player-view.fxml"));
+        Parent root = loader.load();
         stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
         scene =  new Scene(root);
         stage.setScene(scene);
@@ -47,9 +49,12 @@ public class MenuController {
         alert.setTitle("Logout");
         alert.setHeaderText("Você está prestes a abandonar a tripulação.");
         alert.setContentText("Sair do jogo?");
-        if(alert.showAndWait().get()== ButtonType.OK){
-            stage=(Stage) scenePane.getScene().getWindow();
-            stage.close();
+        if(alert.showAndWait().isPresent()){
+            if(alert.showAndWait().get()== ButtonType.OK){
+                stage=(Stage) scenePane.getScene().getWindow();
+                stage.close();
+
+        }
         }
     }
 }

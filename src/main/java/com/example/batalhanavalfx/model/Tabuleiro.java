@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 public class Tabuleiro {
 
+    public Celula[][] getMatrizCelulas() {
+        return matrizCelulas;
+    }
+
     private Celula[][] matrizCelulas;
 
     public Tabuleiro() {

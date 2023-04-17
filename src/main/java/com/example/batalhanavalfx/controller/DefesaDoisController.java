@@ -1,7 +1,9 @@
 package com.example.batalhanavalfx.controller;
 
-import com.example.batalhanavalfx.model.*;
-import com.example.batalhanavalfx.controller.PlayerController;
+import com.example.batalhanavalfx.model.Barcos;
+import com.example.batalhanavalfx.model.Celula;
+import com.example.batalhanavalfx.model.Player;
+import com.example.batalhanavalfx.model.Tabuleiro;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,20 +11,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.*;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-public class DefesaController {
+public class DefesaDoisController {
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -46,26 +47,20 @@ public class DefesaController {
     @FXML
     private ImageView barcoQuatroCanos;
 
-
-
-    public void handleProximoDois(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/defesa-dois-view.fxml"));
+    public void setPlayer(Player playerUm, Player playerDois){
+        this.playerUm = playerUm;
+        this.playerDois = playerDois;
+    }
+    public void handleProximoBomba(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/bomba-view.fxml"));
         Parent root = loader.load();
-        DefesaDoisController controller = loader.getController();
-        controller.initialize();
+        BombasController controller = loader.getController();
         controller.setPlayer(playerUm, playerDois);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
-
-    public void setPlayer(Player playerUm, Player playerDois){
-        this.playerUm = playerUm;
-        this.playerDois = playerDois;
-    }
-
     public void initialize() {
         for (Node node : gridDefesa.getChildren()) {
             if (node instanceof StackPane) {
@@ -87,7 +82,8 @@ public class DefesaController {
                         int rowIndex = GridPane.getRowIndex(stackPane);
                         int colIndex = GridPane.getColumnIndex(stackPane);
                         String tipoBarco = ((Node) event.getGestureSource()).getId();
-                                Tabuleiro tabuleiro = playerUm.getTabuleiro();
+
+                            Tabuleiro tabuleiro = playerDois.getTabuleiro();
                             if ("barcoUmCano".equals(tipoBarco)) {
                                 Barcos barco = new Barcos(1);
                                 Celula celula = new Celula(rowIndex,colIndex, 1);
@@ -116,8 +112,8 @@ public class DefesaController {
                             }
                         System.out.println(Arrays.deepToString(playerUm.getTabuleiro().getMatrizCelulas()));
                             System.out.println("player um row " + rowIndex + " column " + colIndex);
-                        }
 
+                    }
 
                     event.setDropCompleted(success);
                     event.consume();
@@ -152,48 +148,4 @@ public class DefesaController {
 
 
     }
-
-    public AnchorPane getAnchorPane() {
-        return anchorPane;
-    }
-
-    public void setAnchorPane(AnchorPane anchorPane) {
-        this.anchorPane = anchorPane;
-    }
-
-    public ImageView getBarcoUm() {
-        return barcoUm;
-    }
-
-    public void setBarcoUm(ImageView barcoUm) {
-        this.barcoUm = barcoUm;
-    }
-
-    public GridPane getGridDefesa() {
-        return gridDefesa;
-    }
-
-    public void setGridDefesa(GridPane gridDefesa) {
-        this.gridDefesa = gridDefesa;
-    }
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    public Scene getScene() {
-        return scene;
-    }
-
-    public void setScene(Scene scene) {
-        this.scene = scene;
-    }
-
-
-
-
 }

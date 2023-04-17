@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class BombasController {
+public class BombasDoisController {
     private Button[][] button;
     @FXML
     private GridPane board;
@@ -26,7 +26,6 @@ public class BombasController {
 
     private int numCliques = 0;
     private Player playerAtual;
-
 
     private int contaAcertos = 0;
     private Player playerUm;
@@ -48,22 +47,22 @@ public class BombasController {
         Button clickedButton = (Button) event.getSource();
         this.row = GridPane.getRowIndex(clickedButton);
         this.collumn = GridPane.getColumnIndex(clickedButton);
-        int valorCelula = playerDois.getTabuleiro().getMatrizCelulas()[row][collumn].getValorCelula();
+        int valorCelula = playerUm.getTabuleiro().getMatrizCelulas()[row][collumn].getValorCelula();
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
+
             switchPlayers(event);
             checkVitoria();
             numCliques ++;
             contaAcertos ++;
-            playerDois.getTabuleiro().getMatrizCelulas()[row][collumn].setValorCelula(2);
+            playerUm.getTabuleiro().getMatrizCelulas()[row][collumn].setValorCelula(2);
             updateBoard();
-
         }else{
             clickedButton.setStyle("-fx-background-color: blue");
             switchPlayers(event);
             numCliques ++;
             valorCelula = 3;
-            playerDois.getTabuleiro().getMatrizCelulas()[row][collumn].setValorCelula(3);
+            playerUm.getTabuleiro().getMatrizCelulas()[row][collumn].setValorCelula(3);
             updateBoard();
         }
 
@@ -74,7 +73,7 @@ public class BombasController {
     }
     public void switchPlayers(ActionEvent event) throws IOException {
         if(numCliques == 4){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/bomba-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/bomba-dois-view.fxml"));
             Parent root = loader.load();
             BombasController controller = loader.getController();
             controller.setPlayer(playerUm, playerDois);
@@ -88,16 +87,16 @@ public class BombasController {
     public void updateBoard(){
         for (int row = 0; row < 10; row++) {
             for (int column = 0; column < 10; column++) {
-                if(playerDois.getTabuleiro().getMatrizCelulas()[row][collumn].getValorCelula() == 2){
+                if(playerUm.getTabuleiro().getMatrizCelulas()[row][collumn].getValorCelula() == 2){
                     Button button = (Button) board.getChildren().get(row * 10 + column);
                     button.setStyle("-fx-background-color: red;");
-                } else if (playerDois.getTabuleiro().getMatrizCelulas()[row][collumn].getValorCelula() == 3){
+                } else if (playerUm.getTabuleiro().getMatrizCelulas()[row][collumn].getValorCelula() == 3){
 
 
                 }
 
             }
-            }
+        }
 
     }
 
@@ -108,9 +107,6 @@ public class BombasController {
         //if contaAcertos do player atual == numero de celulas, player atual venceu
         //ir para nova tela//alert que mostra a vitoria do player
 
-    }
-    public void setPlayerUm(boolean playerUm) {
-        isPlayerUm = playerUm;
     }
 }
 

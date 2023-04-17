@@ -29,6 +29,7 @@ public class LaunchApplication extends Application {
             alert.setHeaderText("Você está prestes a abandonar a tripulação.");
             alert.setContentText("Sair do jogo?");
             if(alert.showAndWait().get()== ButtonType.OK){
+
                 stage.close();
             }
     }

@@ -15,6 +15,7 @@
       </Label>
       <Button fx:id="voltar" layoutX="226.0" layoutY="302.0" mnemonicParsing="false" onAction="#switchToMenuController" text="Voltar" />
       <TextField fx:id="nomePlayerUm" layoutX="176.0" layoutY="194.0" stylesheets="@css/player.css" />
-      <Button fx:id="proximo" layoutX="220.0" layoutY="252.0" mnemonicParsing="false" onAction="#switchToPlayerDoisController" text="Próximo" />
+      <Button fx:id="proximo" layoutX="220.0" layoutY="252.0" mnemonicParsing="false" onAction="#switchToDefesaController" text="Próximo" />
+      <TextField fx:id="nomePlayerDois" layoutX="176.0" layoutY="147.0" />
    </children>
 </AnchorPane>

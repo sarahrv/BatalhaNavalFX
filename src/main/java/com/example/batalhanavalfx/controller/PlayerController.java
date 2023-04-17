@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import com.example.batalhanavalfx.model.Player;
 import com.example.batalhanavalfx.model.Tabuleiro;
 import java.io.IOException;
+import com.example.batalhanavalfx.controller.DefesaController;
 
 
 public class PlayerController {
@@ -29,35 +30,36 @@ public class PlayerController {
     @FXML
     private TextField nomePlayerDois;
 
+    public Player playerUm;
+
+    public Player playerDois;
+
+    protected Tabuleiro tabuleiroUm;
+
+    protected Tabuleiro tabuleiroDois;
+
+
 
     public void switchToMenuController(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/batalhanavalfx/view/menu-view.fxml"));
-        stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene =  new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void switchToPlayerDoisController(ActionEvent event) throws IOException {
-        String nomeUm = nomePlayerUm.getText();
-        Tabuleiro tabuleiroUm = new Tabuleiro();
-        Player playerUm = new Player(nomeUm,tabuleiroUm);
-        System.out.println(nomeUm);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/player-dois-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/menu-view.fxml"));
         Parent root = loader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
+
+
     public void switchToDefesaController(ActionEvent event) throws IOException {
-        String nomeDois = nomePlayerDois.getText();
-        Tabuleiro tabuleiroDois = new Tabuleiro();
-        Player playerDois = new Player(nomeDois,tabuleiroDois);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/defesa-view.fxml"));
         Parent root = loader.load();
         DefesaController controller = loader.getController();
-        controller.initialize(true);
+        String nomeUm = nomePlayerUm.getText();
+        String nomeDois = nomePlayerDois.getText();
+        Player playerUm = new Player(nomeUm, new Tabuleiro());
+        Player playerDois = new Player(nomeDois, new Tabuleiro());
+        controller.setPlayer(playerUm, playerDois);
+        controller.initialize();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -65,27 +67,10 @@ public class PlayerController {
 
     }
 
-    public void name(){
-
-
-        if (playerName.length()<=2 || playerName.length()>=16){
-            System.out.println("Digite um nome entre 3 e 15 caracteres.");
-        }
-    }
-
-
-    /*public void playerName(){
-        Scanner name1 = new Scanner(System.in);
-        System.out.println("Qual o seu nome? ");
-        playerName = name1.nextLine();
-        System.out.println("Digite seu nome");
-        playerName = input.nextLine();
-
-        if (playerName.length()<=2 || playerName.length()>=16){
-            while (playerName.length()<=2 || playerName.length()>=16){
-                System.out.println("Digite um nome entre 3 e 15 caracteres.");
-                playerName = input.nextLine();
-            }
-        }
-    }*/
 }
+        //if(nomePlayerUm.getText() != null){
+        //String nomeUm = nomePlayerUm.getText();
+        //if(nomePlayerDois.getText() != null){
+          //  String nomeDois = nomePlayerDois.getText();
+
+
