@@ -64,27 +64,26 @@ public class BombasDoisController {
             Parent root = loader.load();
             BombasController controller = loader.getController();
             controller.setPlayer(playerUm, playerDois);
+            controller.updateBoard();
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         }
     }
-    public void updateBoard(){
+    public void updateBoard() {
         for (int row = 0; row < 10; row++) {
             for (int column = 0; column < 10; column++) {
-                if(playerUm.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula() == 2){
-                    Button button = (Button) board.getChildren().get(row * 10 + column);
+                int cellValue = playerUm.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula();
+                Button button = (Button) board.getChildren().get(row + column * 10);
+                if (cellValue == 2) {
                     button.setStyle("-fx-background-color: red;");
-                } else if (playerUm.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula() == 3){
-                    Button button = (Button) board.getChildren().get(row * 10 + column);
-                    button.setStyle("-fx-background-color: blue");
+                } else if (cellValue == 3) {
+                    button.setStyle("-fx-background-color: blue;");
                 }
-
 
             }
         }
-
     }
 
     public void checkTamanhoDoBarco(){

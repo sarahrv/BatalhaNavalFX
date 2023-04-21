@@ -36,6 +36,7 @@ public class  BombasController {
         System.out.println("" + playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red");
+            clickedButton.setDisable(true);
             switchPlayers(event);
             checkVitoria();
             numCliques++;
@@ -44,6 +45,7 @@ public class  BombasController {
 
         } else {
             clickedButton.setStyle("-fx-background-color: blue");
+            clickedButton.setDisable(true);
             switchPlayers(event);
             numCliques++;
             playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
@@ -62,7 +64,7 @@ public class  BombasController {
             Parent root = loader.load();
             BombasDoisController controller = loader.getController();
             controller.setPlayer(playerUm, playerDois);
-            updateBoard();
+            controller.updateBoard();
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -73,38 +75,19 @@ public class  BombasController {
     public void updateBoard() {
         for (int row = 0; row < 10; row++) {
             for (int column = 0; column < 10; column++) {
-                int cellValue = playerUm.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula();
-                Button button = (Button) board.getChildren().get(row);
-                switch (cellValue) {
-                    case 0:
-                    case 1:
-                        break;
-                    case 2:
-                        button.setStyle("-fx-background-color: red;");
-                        break;
-                    case 3:
-                        button.setStyle("-fx-background-color: blue;");
-                        break;
-                }
-            }
-        }
-    }
-
-    public void updateBoardtwo() {
-        for (int row = 0; row < 10; row++) {
-            for (int column = 0; column < 10; column++) {
-                if (playerDois.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula() == 2) {
-                    Button button = (Button) board.getChildren().get(row * 10 + column);
+                int cellValue = playerDois.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula();
+                Button button = (Button) board.getChildren().get(row + column * 10);
+                if (cellValue == 2) {
                     button.setStyle("-fx-background-color: red;");
-                } else if (playerDois.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula() == 3) {
-
-
+                } else if (cellValue == 3) {
+                    button.setStyle("-fx-background-color: blue;");
                 }
 
             }
         }
-
     }
+
+
 
     public void checkTamanhoDoBarco() {
 
