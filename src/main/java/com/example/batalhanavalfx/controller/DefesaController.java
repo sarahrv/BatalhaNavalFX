@@ -1,7 +1,8 @@
 package com.example.batalhanavalfx.controller;
 
-import com.example.batalhanavalfx.model.*;
-import com.example.batalhanavalfx.controller.PlayerController;
+import com.example.batalhanavalfx.model.Player;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,20 +10,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-public class DefesaController {
+public class DefesaController extends AbstractDefesaController{
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -37,6 +32,8 @@ public class DefesaController {
     @FXML
     private Button proximoBomba;
 
+    private Button horizontal;
+
     @FXML
     private ImageView barcoUmCano;
     @FXML
@@ -46,154 +43,30 @@ public class DefesaController {
     @FXML
     private ImageView barcoQuatroCanos;
 
+    private int contaBarcos = 0;
+
+    private ImageView imageViewGirada;
+
+    private BooleanProperty isFlipped = new SimpleBooleanProperty(false);
+
 
 
     public void handleProximoDois(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/defesa-dois-view.fxml"));
         Parent root = loader.load();
         DefesaDoisController controller = loader.getController();
-        controller.initialize();
         controller.setPlayer(playerUm, playerDois);
+        controller.initialize(playerDois);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
     }
-
-    public void setPlayer(Player playerUm, Player playerDois){
+    @Override
+    public void setPlayer(Player playerUm, Player playerDois) {
         this.playerUm = playerUm;
         this.playerDois = playerDois;
     }
-
-    public void initialize() {
-        for (Node node : gridDefesa.getChildren()) {
-            if (node instanceof StackPane) {
-                StackPane stackPane = (StackPane) node;
-
-                stackPane.setOnDragOver(event -> {
-                    if (event.getGestureSource() != stackPane && event.getDragboard().hasImage()) {
-                        event.acceptTransferModes(TransferMode.MOVE);
-                    }
-                    event.consume();
-                });
-
-                stackPane.setOnDragDropped(event -> {
-                    Dragboard db = event.getDragboard();
-                    boolean success = false;
-                    if (db.hasImage()) {
-                        ImageView droppedImageView = new ImageView(db.getImage());
-                        stackPane.getChildren().add(droppedImageView);
-                        int rowIndex = GridPane.getRowIndex(stackPane);
-                        int colIndex = GridPane.getColumnIndex(stackPane);
-                        String tipoBarco = ((Node) event.getGestureSource()).getId();
-                                Tabuleiro tabuleiro = playerUm.getTabuleiro();
-                            if ("barcoUmCano".equals(tipoBarco)) {
-                                Barcos barco = new Barcos(1);
-                                Celula celula = new Celula(rowIndex,colIndex, 1);
-                                barco.getCelulaOcupada().add(celula);
-                                tabuleiro.colocaBracosNaMatriz(barco);
-                                System.out.println("1cano p1");
-                            } else if ("barcoDoisCanos".equals(tipoBarco)) {
-                                System.out.println("2canos p1");
-                                Barcos barco = new Barcos(2);
-                                Celula celula = new Celula(rowIndex,colIndex, 1);
-                                Celula celulaDois = new Celula(rowIndex + 1,colIndex, 1);
-                                barco.getCelulaOcupada().add(celula);
-                                barco.getCelulaOcupada().add(celulaDois);
-                                tabuleiro.colocaBracosNaMatriz(barco);
-
-                            } else if ("barcoTresCanos".equals(tipoBarco)) {
-                                Barcos barco = new Barcos(3);
-                                Celula celula = new Celula(rowIndex,colIndex, 1);
-                                Celula celulaDois = new Celula(rowIndex + 1,colIndex, 1);
-                                Celula celulaTres = new Celula(rowIndex + 2,colIndex, 1);
-                                barco.getCelulaOcupada().add(celula);
-                                barco.getCelulaOcupada().add(celulaDois);
-                                barco.getCelulaOcupada().add(celulaTres);
-                                tabuleiro.colocaBracosNaMatriz(barco);
-                                System.out.println("3canos player um");
-                            }
-                        System.out.println(Arrays.deepToString(playerUm.getTabuleiro().getMatrizCelulas()));
-                            System.out.println("player um row " + rowIndex + " column " + colIndex);
-                        }
-
-
-                    event.setDropCompleted(success);
-                    event.consume();
-                });
-            }
-        }
-
-
-        for(Node node: anchorPane.getChildren()) {
-            if (node instanceof ImageView) {
-                ImageView imageView = (ImageView) node;
-
-
-                imageView.setOnDragDetected(event -> {
-                    Dragboard db = imageView.startDragAndDrop(TransferMode.MOVE);
-                    ClipboardContent content = new ClipboardContent();
-                    content.putImage(imageView.getImage());
-                    db.setContent(content);
-                    event.consume();
-                });
-
-                imageView.setOnDragDone(event -> {
-                    if (event.getTransferMode() == TransferMode.MOVE) {
-                        //remove()
-                    }
-                    event.consume();
-                });
-            }
-        }
-
-
-
-
-    }
-
-    public AnchorPane getAnchorPane() {
-        return anchorPane;
-    }
-
-    public void setAnchorPane(AnchorPane anchorPane) {
-        this.anchorPane = anchorPane;
-    }
-
-    public ImageView getBarcoUm() {
-        return barcoUm;
-    }
-
-    public void setBarcoUm(ImageView barcoUm) {
-        this.barcoUm = barcoUm;
-    }
-
-    public GridPane getGridDefesa() {
-        return gridDefesa;
-    }
-
-    public void setGridDefesa(GridPane gridDefesa) {
-        this.gridDefesa = gridDefesa;
-    }
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    public Scene getScene() {
-        return scene;
-    }
-
-    public void setScene(Scene scene) {
-        this.scene = scene;
-    }
-
-
-
 
 }

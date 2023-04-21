@@ -17,7 +17,6 @@ public class LaunchApplication extends Application {
         stage.setTitle("Batalha Naval");
         stage.setScene(scene);
         stage.show();
-
         stage.setOnCloseRequest(event -> {
             event.consume();
             sairTelaAction(stage);

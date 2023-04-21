@@ -12,8 +12,6 @@ import javafx.stage.Stage;
 import com.example.batalhanavalfx.model.Player;
 import com.example.batalhanavalfx.model.Tabuleiro;
 import java.io.IOException;
-import com.example.batalhanavalfx.controller.DefesaController;
-
 
 public class PlayerController {
     private Stage stage;
@@ -29,15 +27,6 @@ public class PlayerController {
 
     @FXML
     private TextField nomePlayerDois;
-
-    public Player playerUm;
-
-    public Player playerDois;
-
-    protected Tabuleiro tabuleiroUm;
-
-    protected Tabuleiro tabuleiroDois;
-
 
 
     public void switchToMenuController(ActionEvent event) throws IOException {
@@ -56,10 +45,12 @@ public class PlayerController {
         DefesaController controller = loader.getController();
         String nomeUm = nomePlayerUm.getText();
         String nomeDois = nomePlayerDois.getText();
-        Player playerUm = new Player(nomeUm, new Tabuleiro());
-        Player playerDois = new Player(nomeDois, new Tabuleiro());
+        int numBarcosUm = 0;
+        int numBarcosDois = 0;
+        Player playerUm = new Player(nomeUm, new Tabuleiro(), numBarcosUm);
+        Player playerDois = new Player(nomeDois, new Tabuleiro(), numBarcosDois);
         controller.setPlayer(playerUm, playerDois);
-        controller.initialize();
+        controller.initialize(playerUm);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -68,9 +59,5 @@ public class PlayerController {
     }
 
 }
-        //if(nomePlayerUm.getText() != null){
-        //String nomeUm = nomePlayerUm.getText();
-        //if(nomePlayerDois.getText() != null){
-          //  String nomeDois = nomePlayerDois.getText();
 
 

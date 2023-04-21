@@ -1,38 +1,34 @@
 package com.example.batalhanavalfx.model;
 
-import java.util.ArrayList;
+    public class Barcos {
+        private int row;
+        private int collumn;
 
-public class Barcos {
+        private int valorCelula;
+
+        public Barcos(int row, int column, int valorCelula) {
+            this.row = row;
+            this.collumn = column;
+            this.valorCelula = valorCelula;
+        }
 
 
-    private ArrayList<Celula> celulaOcupada;
+        public int getCollumn() {
+            return collumn;
+        }
 
-    private int tamanho;
+        public int getRow() {
+            return row;
+        }
 
-    public Barcos(int tamanho){
-        this.tamanho = tamanho;
-        celulaOcupada = new ArrayList<>();
+        public int getValorCelula() {
+            return valorCelula;
+        }
+
+        public void setValorCelula(int valorCelula) {
+            this.valorCelula = valorCelula;
+        }
 
     }
-    public ArrayList<Celula> getCelulaOcupada() {
-        return celulaOcupada;
-    }
-
-    public void setCelulaOcupada(ArrayList<Celula> celulaOcupada) {
-        this.celulaOcupada = celulaOcupada;
-    }
-    public void defineTamanho(){
-
-    }
-
-    public boolean levouBomba() {
-        //o return é apenas ilustrativo, o método deve retornar se o navio inteiro (não só a celula) levou bomba ou não.
-        //se o numero de celulaBombada == o numero de celulasDoNavio, levou bomba retorna true, navioMorto == true.
-        return true;
-    }
 
 
-    public int getTamanho() {
-        return this.tamanho;
-    }
-}

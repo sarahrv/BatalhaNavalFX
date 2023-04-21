@@ -1,7 +1,6 @@
 package com.example.batalhanavalfx.controller;
 
 import com.example.batalhanavalfx.model.Player;
-import com.example.batalhanavalfx.model.Tabuleiro;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,25 +8,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import com.example.batalhanavalfx.controller.DefesaController;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class BombasController {
+public class  BombasController {
     private Button[][] button;
     @FXML
     private GridPane board;
-    private boolean isPlayerUm;
-    private int row;
-    private int collumn;
-
     private int numCliques = 0;
-    private Player playerAtual;
-
-
     private int contaAcertos = 0;
     private Player playerUm;
     private Player playerDois;
@@ -35,82 +25,96 @@ public class BombasController {
     private Stage stage;
     private Scene scene;
 
-
-    //começa com playerUm = playerAtual, depois analisa o numero de cliques pra ver se já vai trocar pra o playerDois
-    //se playerAtual = playerUm, tem pegar o tabuleiro do player dois
-    //ou seja,playerAtual mexe com tabuleiroInimigo
-    //como atualizar o tabuleiro? se a celula for 2, o botão nessa coordenada fica vermelho
-    //como atualizar a bombasview?
-    //lembrar de fazer
-
-
-    public void getButtonsXY(ActionEvent event) throws IOException{
+    public void getButtonsXY(ActionEvent event) throws IOException {
+        //fazer com que se o botao foi clicado, não pode ser de novo
         Button clickedButton = (Button) event.getSource();
-        this.row = GridPane.getRowIndex(clickedButton);
-        this.collumn = GridPane.getColumnIndex(clickedButton);
-        int valorCelula = playerDois.getTabuleiro().getMatrizCelulas()[row][collumn].getValorCelula();
+        int row = GridPane.getRowIndex(clickedButton);
+        int collumn = GridPane.getColumnIndex(clickedButton);
+        int valorCelula = playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula();
+        System.out.println("entrou:" + playerUm.getNome() + " row " + row + " collumn " + collumn);
+        System.out.println(playerDois.getNumBarcos());
+        System.out.println("" + playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
         if (valorCelula == 1) {
-            clickedButton.setStyle("-fx-background-color: red;");
+            clickedButton.setStyle("-fx-background-color: red");
             switchPlayers(event);
             checkVitoria();
-            numCliques ++;
-            contaAcertos ++;
-            playerDois.getTabuleiro().getMatrizCelulas()[row][collumn].setValorCelula(2);
-            updateBoard();
+            numCliques++;
+            contaAcertos++;
+            playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
 
-        }else{
+        } else {
             clickedButton.setStyle("-fx-background-color: blue");
             switchPlayers(event);
-            numCliques ++;
-            valorCelula = 3;
-            playerDois.getTabuleiro().getMatrizCelulas()[row][collumn].setValorCelula(3);
-            updateBoard();
+            numCliques++;
+            playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
         }
 
     }
-    public void setPlayer(Player playerUm, Player playerDois){
+
+    public void setPlayer(Player playerUm, Player playerDois) {
         this.playerUm = playerUm;
         this.playerDois = playerDois;
     }
+
     public void switchPlayers(ActionEvent event) throws IOException {
-        if(numCliques == 4){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/bomba-view.fxml"));
+        if (numCliques == 4) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/bombas-dois-view.fxml"));
             Parent root = loader.load();
-            BombasController controller = loader.getController();
+            BombasDoisController controller = loader.getController();
             controller.setPlayer(playerUm, playerDois);
-            controller.updateBoard();
+            updateBoard();
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         }
     }
-    public void updateBoard(){
+
+    public void updateBoard() {
         for (int row = 0; row < 10; row++) {
             for (int column = 0; column < 10; column++) {
-                if(playerDois.getTabuleiro().getMatrizCelulas()[row][collumn].getValorCelula() == 2){
+                int cellValue = playerUm.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula();
+                Button button = (Button) board.getChildren().get(row);
+                switch (cellValue) {
+                    case 0:
+                    case 1:
+                        break;
+                    case 2:
+                        button.setStyle("-fx-background-color: red;");
+                        break;
+                    case 3:
+                        button.setStyle("-fx-background-color: blue;");
+                        break;
+                }
+            }
+        }
+    }
+
+    public void updateBoardtwo() {
+        for (int row = 0; row < 10; row++) {
+            for (int column = 0; column < 10; column++) {
+                if (playerDois.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula() == 2) {
                     Button button = (Button) board.getChildren().get(row * 10 + column);
                     button.setStyle("-fx-background-color: red;");
-                } else if (playerDois.getTabuleiro().getMatrizCelulas()[row][collumn].getValorCelula() == 3){
+                } else if (playerDois.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula() == 3) {
 
 
                 }
 
             }
-            }
+        }
 
     }
 
-    public void checkTamanhoDoBarco(){
+    public void checkTamanhoDoBarco() {
 
     }
-    public void checkVitoria(){
-        //if contaAcertos do player atual == numero de celulas, player atual venceu
-        //ir para nova tela//alert que mostra a vitoria do player
 
-    }
-    public void setPlayerUm(boolean playerUm) {
-        isPlayerUm = playerUm;
+    public void checkVitoria() {
+        if (contaAcertos == playerDois.getNumBarcos()) {
+         //tela de vitoria
+        }
+
     }
 }
 
