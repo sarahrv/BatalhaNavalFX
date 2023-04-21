@@ -45,8 +45,6 @@ public class DefesaController extends AbstractDefesaController {
 
     private int contaBarcos = 0;
 
-    private ImageView imageViewGirada;
-
     private BooleanProperty isFlipped = new SimpleBooleanProperty(false);
 
 

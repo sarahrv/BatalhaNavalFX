@@ -1,6 +1,8 @@
 package com.example.batalhanavalfx.exception;
 
 public class InputInvalidoException extends Exception{
-    //excecao lancada quando usuario digita nome
-    //ocore se nome for muito grande
+    public InputInvalidoException() {
+        super("Erro: o nome dos players deve ter ao menos três letras!");
+    }
+
 }

@@ -24,6 +24,10 @@ public class  BombasController {
     private Stage stage;
     private Scene scene;
 
+    //criar classe abstrata ou interface
+    //ajeitar os cliques (colocar sleep ou alert)
+    //fazer ranking
+
     public void getButtonsXY(ActionEvent event) throws IOException {
         Button clickedButton = (Button) event.getSource();
         int row = GridPane.getRowIndex(clickedButton);

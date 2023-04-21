@@ -19,7 +19,8 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 public abstract class AbstractDefesaController {
-    //colocar todos os botoes
+    //colocar barcos quatro canos
+    //colocar barcos porta aviao
 
     @FXML
     private AnchorPane anchorPane;
@@ -99,11 +100,18 @@ public abstract class AbstractDefesaController {
                         }if ("barcoTresCanos".equals(tipoBarco)) {
                             controleTamanho = 3;
                         }
-                        if(isFlippedBarcoDoisCanos.get()||isFlippedBarcoTresCanos.get()){
+                        //erro eh aquiii
+                        //tentar pegar a imageview que ta sendo arrastada
+                        if(isFlippedBarcoDoisCanos.get()){
                             if (rowIndex + controleTamanho - 1 <= 9 && colIndex <= 9){
                                 if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
                                 event.acceptTransferModes(TransferMode.MOVE);}
-                        }}else{
+                        }}if(isFlippedBarcoTresCanos.get()){
+                            if (rowIndex + controleTamanho - 1 <= 9 && colIndex <= 9){
+                                if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                                    event.acceptTransferModes(TransferMode.MOVE);}
+                        }}
+                        else {
                             if (colIndex + controleTamanho - 1 <= 9 && rowIndex <= 9){
                                 if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
                                     event.acceptTransferModes(TransferMode.MOVE);}
