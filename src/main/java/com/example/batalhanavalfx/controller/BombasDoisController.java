@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class BombasDoisController {
-    private Button[][] button;
     @FXML
     private GridPane board;
 
@@ -40,14 +39,14 @@ public class BombasDoisController {
         System.out.println(""+playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
         System.out.println(playerUm.getNumBarcos());
         if (valorCelula == 1) {
-            clickedButton.setStyle("-fx-background-color: red");
+            clickedButton.setStyle("-fx-background-color: red;");
             switchPlayers(event);
             checkVitoria();
             numCliques ++;
             contaAcertos ++;
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
         }else{
-            clickedButton.setStyle("-fx-background-color: blue");
+            clickedButton.setStyle("-fx-background-color: blue;");
             switchPlayers(event);
             numCliques ++;
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
@@ -91,7 +90,7 @@ public class BombasDoisController {
     }
     public void checkVitoria(){
         if (contaAcertos == playerUm.getNumBarcos()){
-            //tela de vitoria
+            System.out.println("player dois ganhou");
         }
 
     }

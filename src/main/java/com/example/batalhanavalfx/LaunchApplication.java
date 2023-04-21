@@ -22,19 +22,16 @@ public class LaunchApplication extends Application {
             sairTelaAction(stage);
         });
     }
-        public void sairTelaAction(Stage stage){
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Logout");
-            alert.setHeaderText("Você está prestes a abandonar a tripulação.");
-            alert.setContentText("Sair do jogo?");
-            if(alert.showAndWait().get()== ButtonType.OK){
 
-                stage.close();
-            }
+    public void sairTelaAction(Stage stage) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("Você está prestes a abandonar a tripulação.");
+        alert.setContentText("Sair do jogo?");
+        if (alert.showAndWait().get() == ButtonType.OK) {
+
+            stage.close();
+        }
     }
 
-
-    public static void main(String[] args) {
-        launch();
-    }
 }

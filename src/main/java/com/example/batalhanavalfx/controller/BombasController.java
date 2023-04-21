@@ -35,7 +35,7 @@ public class  BombasController {
         System.out.println(playerDois.getNumBarcos());
         System.out.println("" + playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
         if (valorCelula == 1) {
-            clickedButton.setStyle("-fx-background-color: red");
+            clickedButton.setStyle("-fx-background-color: red;");
             clickedButton.setDisable(true);
             switchPlayers(event);
             checkVitoria();
@@ -44,7 +44,7 @@ public class  BombasController {
             playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
 
         } else {
-            clickedButton.setStyle("-fx-background-color: blue");
+            clickedButton.setStyle("-fx-background-color: blue;");
             clickedButton.setDisable(true);
             switchPlayers(event);
             numCliques++;
@@ -95,7 +95,7 @@ public class  BombasController {
 
     public void checkVitoria() {
         if (contaAcertos == playerDois.getNumBarcos()) {
-         //tela de vitoria
+            System.out.println("player um ganhou");
         }
 
     }
