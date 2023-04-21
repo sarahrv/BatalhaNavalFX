@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DefesaController extends AbstractDefesaController{
+public class DefesaController extends AbstractDefesaController {
     @FXML
     private AnchorPane anchorPane;
     @FXML

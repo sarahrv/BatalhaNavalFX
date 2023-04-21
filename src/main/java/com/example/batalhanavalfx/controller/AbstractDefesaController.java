@@ -1,7 +1,6 @@
 package com.example.batalhanavalfx.controller;
 
 import com.example.batalhanavalfx.model.Player;
-import com.example.batalhanavalfx.model.Tabuleiro;
 import javafx.animation.RotateTransition;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -34,6 +33,14 @@ public abstract class AbstractDefesaController {
     private ImageView barcoQuatroCanos;
     @FXML
     private GridPane gridDefesa;
+
+    private int contaUmCano = 0;
+    private int contaDoisCanos = 0;
+
+    private int contaTresCanos = 0;
+
+    private int contaQuatroCanos = 0;
+
 
     private int contaBarcos = 0;
 
@@ -120,6 +127,7 @@ public abstract class AbstractDefesaController {
                             droppedImageView.setRotate(isFlippedBarcoUmCano.get() ? 90 : 0);
                             player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].setValorCelula(1);
                             contaBarcos ++;
+                            contaUmCano ++;
                             player.setNumBarcos(contaBarcos);
                             System.out.println(player.getNome());
                         } else if ("barcoDoisCanos".equals(tipoBarco)) {
@@ -132,21 +140,46 @@ public abstract class AbstractDefesaController {
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 1].setValorCelula(1);
                             }
                             contaBarcos ++;
+                            contaDoisCanos ++;
                             player.setNumBarcos(contaBarcos);
 
                         } else if ("barcoTresCanos".equals(tipoBarco)) {
                             droppedImageView.setRotate(isFlippedBarcoTresCanos.get() ? 90 : 0);
-                            player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].setValorCelula(1);
-                            player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 1].setValorCelula(1);
-                            player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 2].setValorCelula(1);
+                            if(isFlippedBarcoTresCanos.get()){
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].setValorCelula(1);
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex + 1][colIndex].setValorCelula(1);
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex + 2][colIndex].setValorCelula(1);
+
+                            }else {
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].setValorCelula(1);
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 1].setValorCelula(1);
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 2].setValorCelula(1);
+                            }
                             contaBarcos ++;
+                            contaTresCanos ++;
                             player.setNumBarcos(contaBarcos);
 
                         }stackPane.getChildren().add(droppedImageView);
 
+
                     }
                     event.setDropCompleted(success);
+                    if(player.getModo().equals("normal")){
+                        if(contaUmCano == 4){
+                            anchorPane.getChildren().remove(barcoUmCano);
+                        }
+                        if(contaDoisCanos == 3){
+                            anchorPane.getChildren().remove(barcoDoisCanos);
+                        }
+                        if(contaTresCanos == 2){
+                            anchorPane.getChildren().remove(barcoTresCanos);
+                        }
+
+                    }
+
+
                     event.consume();
+
                 });
             }
         }
@@ -168,7 +201,7 @@ public abstract class AbstractDefesaController {
 
                 imageView.setOnDragDone(event -> {
                     if (event.getTransferMode() == TransferMode.MOVE) {
-                        //remove()
+
                     }
                     event.consume();
                 });

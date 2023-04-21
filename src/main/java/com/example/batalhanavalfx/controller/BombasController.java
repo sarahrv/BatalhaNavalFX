@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class  BombasController {
-    private Button[][] button;
     @FXML
     private GridPane board;
     private int numCliques = 0;
@@ -26,7 +25,6 @@ public class  BombasController {
     private Scene scene;
 
     public void getButtonsXY(ActionEvent event) throws IOException {
-        //fazer com que se o botao foi clicado, não pode ser de novo
         Button clickedButton = (Button) event.getSource();
         int row = GridPane.getRowIndex(clickedButton);
         int collumn = GridPane.getColumnIndex(clickedButton);
@@ -79,8 +77,10 @@ public class  BombasController {
                 Button button = (Button) board.getChildren().get(row + column * 10);
                 if (cellValue == 2) {
                     button.setStyle("-fx-background-color: red;");
+                    button.setDisable(true);
                 } else if (cellValue == 3) {
                     button.setStyle("-fx-background-color: blue;");
+                    button.setDisable(true);
                 }
 
             }

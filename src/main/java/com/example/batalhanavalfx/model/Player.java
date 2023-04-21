@@ -15,6 +15,16 @@ public class Player {
     }
 
     private int numBarcos;
+
+    public String getModo() {
+        return modo;
+    }
+
+    public void setModo(String modo) {
+        this.modo = modo;
+    }
+
+    private String modo;
     public Tabuleiro getTabuleiro() {
         return tabuleiro;
     }
@@ -31,7 +41,8 @@ public class Player {
 
 
 
-    public Player(String nome, Tabuleiro tabuleiro, int numBarcos) {
+    public Player(String nome, Tabuleiro tabuleiro, int numBarcos, String modo) {
+        this.modo = modo;
         this.numBarcos = numBarcos;
         this.nome = nome;
         this.tabuleiro = tabuleiro;

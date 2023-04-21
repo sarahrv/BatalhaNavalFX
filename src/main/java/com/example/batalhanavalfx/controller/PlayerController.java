@@ -39,18 +39,17 @@ public class PlayerController {
     }
 
 
-    public void switchToDefesaController(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/defesa-view.fxml"));
+    public void switchToModoController(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/modo-view.fxml"));
         Parent root = loader.load();
-        DefesaController controller = loader.getController();
+        ModoController controller = loader.getController();
         String nomeUm = nomePlayerUm.getText();
         String nomeDois = nomePlayerDois.getText();
         int numBarcosUm = 0;
         int numBarcosDois = 0;
-        Player playerUm = new Player(nomeUm, new Tabuleiro(), numBarcosUm);
-        Player playerDois = new Player(nomeDois, new Tabuleiro(), numBarcosDois);
+        Player playerUm = new Player(nomeUm, new Tabuleiro(), numBarcosUm, null);
+        Player playerDois = new Player(nomeDois, new Tabuleiro(), numBarcosDois, null);
         controller.setPlayer(playerUm, playerDois);
-        controller.initialize(playerUm);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);

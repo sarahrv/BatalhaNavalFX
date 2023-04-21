@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-public class DefesaDoisController extends AbstractDefesaController{
+public class DefesaDoisController extends AbstractDefesaController {
     @FXML
     private AnchorPane anchorPane;
     @FXML

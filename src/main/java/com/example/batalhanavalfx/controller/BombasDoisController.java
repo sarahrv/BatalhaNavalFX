@@ -1,7 +1,6 @@
 package com.example.batalhanavalfx.controller;
 
 import com.example.batalhanavalfx.model.Player;
-import com.example.batalhanavalfx.model.Tabuleiro;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import com.example.batalhanavalfx.controller.DefesaController;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -40,6 +37,7 @@ public class BombasDoisController {
         System.out.println(playerUm.getNumBarcos());
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
+            clickedButton.setDisable(true);
             switchPlayers(event);
             checkVitoria();
             numCliques ++;
@@ -47,6 +45,7 @@ public class BombasDoisController {
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
         }else{
             clickedButton.setStyle("-fx-background-color: blue;");
+            clickedButton.setDisable(true);
             switchPlayers(event);
             numCliques ++;
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
@@ -77,8 +76,10 @@ public class BombasDoisController {
                 Button button = (Button) board.getChildren().get(row + column * 10);
                 if (cellValue == 2) {
                     button.setStyle("-fx-background-color: red;");
+                    button.setDisable(true);
                 } else if (cellValue == 3) {
                     button.setStyle("-fx-background-color: blue;");
+                    button.setDisable(true);
                 }
 
             }
