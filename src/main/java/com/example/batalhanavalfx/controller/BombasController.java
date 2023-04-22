@@ -93,7 +93,7 @@ public class  BombasController {
         }
     }
 
-    public void escreveAqrquivo(String fileName, String content) throws IOException {
+    public void escreveArquivo(String fileName, String content) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
         writer.write(content);
         writer.newLine();
@@ -103,7 +103,7 @@ public class  BombasController {
     public void saveVencedor(Player vencedor) throws IOException {
         String fileName = "vencedores.txt";
         String nome = vencedor.getNome();
-        escreveAqrquivo(fileName, nome);
+        escreveArquivo(fileName, nome);
     }
 
 

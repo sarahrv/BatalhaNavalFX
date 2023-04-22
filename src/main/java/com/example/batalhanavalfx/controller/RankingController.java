@@ -9,18 +9,19 @@ import java.util.Scanner;
 
 public class RankingController {
 
-    //um ranking pra cada modo?
     @FXML
-    private TextArea winnerTextArea;
+    public TextArea winnerTextArea;
+
+    //botao pra voltar pro menu
+    //um ranking pra cada modo?
     public void displayWinners() throws NullPointerException{
-        winnerTextArea.setEditable(false);
         try (BufferedReader reader = new BufferedReader(new FileReader("vencedores.txt"))) {
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
                 sb.append(line).append("\n");
             }
-            winnerTextArea.setPromptText(sb.toString());
+            winnerTextArea.setText(sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

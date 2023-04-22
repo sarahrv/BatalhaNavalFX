@@ -56,25 +56,23 @@ public abstract class AbstractDefesaController {
     public void flipImage(ActionEvent event) {
         Button btn = (Button) event.getSource();
         String id = btn.getId();
+
         if(id.equals("verticalUm")){
             RotateTransition rt = new RotateTransition(Duration.millis(500), barcoUmCano);
             rt.setByAngle(90);
             rt.play();
             isFlippedBarcoUmCano.set(!isFlippedBarcoUmCano.get());
-            imagemGiradaAtual = barcoUmCano;
         }
         else if (id.equals("verticalDois")){
             RotateTransition rt = new RotateTransition(Duration.millis(500), barcoDoisCanos);
             rt.setByAngle(90);
             rt.play();
             isFlippedBarcoDoisCanos.set(!isFlippedBarcoDoisCanos.get());
-            imagemGiradaAtual = barcoDoisCanos;
         } else if (id.equals("verticalTres")) {
             RotateTransition rt = new RotateTransition(Duration.millis(500), barcoTresCanos);
             rt.setByAngle(90);
             rt.play();
             isFlippedBarcoTresCanos.set(!isFlippedBarcoTresCanos.get());
-            imagemGiradaAtual = barcoTresCanos;
         }
 
     }
@@ -107,27 +105,37 @@ public abstract class AbstractDefesaController {
                         }if ("barcoTresCanos".equals(tipoBarco)) {
                             controleTamanho = 3;
                         }
-                        boolean isFlipped = false;
-                        if (image.getId().equals(imagemGiradaAtual.getId()) && isFlippedBarcoUmCano.get()) {
-                            isFlipped = true;
-                        } else if (image.getId().equals(imagemGiradaAtual.getId()) && isFlippedBarcoDoisCanos.get()) {
-                            isFlipped = true;
-                        } else if (image.getId().equals(imagemGiradaAtual.getId()) && isFlippedBarcoTresCanos.get()) {
-                            isFlipped = true;
-                        }
 
-                        if (isFlipped == false || imagemGiradaAtual == null) {
-                            if (colIndex + controleTamanho - 1 <= 9 && rowIndex <= 9) {
-                                if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
-                                    event.acceptTransferModes(TransferMode.MOVE);
-                                }
-                            }
-                        } else if (imagemGiradaAtual != null && image.getId().equals(imagemGiradaAtual.getId()) && rowIndex + controleTamanho - 1 <= 9 && colIndex <= 9) {
+                        if (image.getId().equals(barcoDoisCanos.getId()) && isFlippedBarcoDoisCanos.get() && rowIndex + controleTamanho - 1 <= 9 && colIndex <= 9) {
                             if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
                                 event.acceptTransferModes(TransferMode.MOVE);
                             }
                         }
+                        if (image.getId().equals(barcoTresCanos.getId()) && isFlippedBarcoTresCanos.get() && rowIndex + controleTamanho - 1 <= 9 && colIndex <= 9) {
+                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                                        event.acceptTransferModes(TransferMode.MOVE);
+                            }
+                        }
+
+                        if(image.getId().equals(barcoDoisCanos.getId()) && !isFlippedBarcoDoisCanos.get() && colIndex + controleTamanho - 1 <= 9 && rowIndex <= 9) {
+                                if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                                    event.acceptTransferModes(TransferMode.MOVE);
+                                }
+                            }
+                        if(image.getId().equals(barcoTresCanos.getId()) && !isFlippedBarcoTresCanos.get() && colIndex + controleTamanho - 1 <= 9 && rowIndex <= 9) {
+                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                                event.acceptTransferModes(TransferMode.MOVE);
+                            }
+                        }
+                        if(image.getId().equals(barcoUmCano.getId())){
+                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                                event.acceptTransferModes(TransferMode.MOVE);
+                            }
+                        }
+
+
                     }
+
                     event.consume();
                 });
 
@@ -226,6 +234,5 @@ public abstract class AbstractDefesaController {
                 });
             }
         }
-        //fazer uma função pra passar pro setondragdone que remova os barcos dependendo do modo que o player ta
 
 }}
