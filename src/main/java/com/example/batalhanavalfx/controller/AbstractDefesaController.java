@@ -18,6 +18,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
+import java.util.Objects;
+
 public abstract class AbstractDefesaController {
     //colocar barcos quatro canos
     //colocar barcos porta aviao
@@ -42,8 +44,9 @@ public abstract class AbstractDefesaController {
 
     private int contaQuatroCanos = 0;
 
-
     private int contaBarcos = 0;
+
+    private ImageView imagemGiradaAtual;
 
     private BooleanProperty isFlippedBarcoUmCano = new SimpleBooleanProperty(false);
     private BooleanProperty isFlippedBarcoDoisCanos = new SimpleBooleanProperty(false);
@@ -58,19 +61,21 @@ public abstract class AbstractDefesaController {
             rt.setByAngle(90);
             rt.play();
             isFlippedBarcoUmCano.set(!isFlippedBarcoUmCano.get());
+            imagemGiradaAtual = barcoUmCano;
         }
         else if (id.equals("verticalDois")){
             RotateTransition rt = new RotateTransition(Duration.millis(500), barcoDoisCanos);
             rt.setByAngle(90);
             rt.play();
             isFlippedBarcoDoisCanos.set(!isFlippedBarcoDoisCanos.get());
+            imagemGiradaAtual = barcoDoisCanos;
         } else if (id.equals("verticalTres")) {
             RotateTransition rt = new RotateTransition(Duration.millis(500), barcoTresCanos);
             rt.setByAngle(90);
             rt.play();
             isFlippedBarcoTresCanos.set(!isFlippedBarcoTresCanos.get());
+            imagemGiradaAtual = barcoTresCanos;
         }
-
 
     }
     public void initialize(Player player) throws NullPointerException {
@@ -89,9 +94,11 @@ public abstract class AbstractDefesaController {
                 stackPane.setOnDragOver(event -> {
 
                     if (event.getGestureSource() != stackPane && event.getDragboard().hasImage()) {
+                        ImageView image = (ImageView) event.getGestureSource();
                         int rowIndex = GridPane.getRowIndex(stackPane);
                         int colIndex = GridPane.getColumnIndex(stackPane);
                         String tipoBarco = ((Node) event.getGestureSource()).getId();
+                        //o erro com certeza tá por aqui
                         int controleTamanho = 0;
                         if ("barcoUmCano".equals(tipoBarco)) {
                             controleTamanho = 1;
@@ -100,25 +107,26 @@ public abstract class AbstractDefesaController {
                         }if ("barcoTresCanos".equals(tipoBarco)) {
                             controleTamanho = 3;
                         }
-                        //erro eh aquiii
-                        //tentar pegar a imageview que ta sendo arrastada
-                        if(isFlippedBarcoDoisCanos.get()){
-                            if (rowIndex + controleTamanho - 1 <= 9 && colIndex <= 9){
-                                if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
-                                event.acceptTransferModes(TransferMode.MOVE);}
-                        }}if(isFlippedBarcoTresCanos.get()){
-                            if (rowIndex + controleTamanho - 1 <= 9 && colIndex <= 9){
-                                if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
-                                    event.acceptTransferModes(TransferMode.MOVE);}
-                        }}
-                        else {
-                            if (colIndex + controleTamanho - 1 <= 9 && rowIndex <= 9){
-                                if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
-                                    event.acceptTransferModes(TransferMode.MOVE);}
-                            }
+                        boolean isFlipped = false;
+                        if (image.getId().equals(imagemGiradaAtual.getId()) && isFlippedBarcoUmCano.get()) {
+                            isFlipped = true;
+                        } else if (image.getId().equals(imagemGiradaAtual.getId()) && isFlippedBarcoDoisCanos.get()) {
+                            isFlipped = true;
+                        } else if (image.getId().equals(imagemGiradaAtual.getId()) && isFlippedBarcoTresCanos.get()) {
+                            isFlipped = true;
                         }
 
-
+                        if (isFlipped == false || imagemGiradaAtual == null) {
+                            if (colIndex + controleTamanho - 1 <= 9 && rowIndex <= 9) {
+                                if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                                    event.acceptTransferModes(TransferMode.MOVE);
+                                }
+                            }
+                        } else if (imagemGiradaAtual != null && image.getId().equals(imagemGiradaAtual.getId()) && rowIndex + controleTamanho - 1 <= 9 && colIndex <= 9) {
+                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                                event.acceptTransferModes(TransferMode.MOVE);
+                            }
+                        }
                     }
                     event.consume();
                 });
@@ -147,6 +155,7 @@ public abstract class AbstractDefesaController {
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].setValorCelula(1);
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 1].setValorCelula(1);
                             }
+
                             contaBarcos ++;
                             contaDoisCanos ++;
                             player.setNumBarcos(contaBarcos);
@@ -170,8 +179,10 @@ public abstract class AbstractDefesaController {
                         }stackPane.getChildren().add(droppedImageView);
 
 
+
                     }
                     event.setDropCompleted(success);
+
                     if(player.getModo().equals("normal")){
                         if(contaUmCano == 4){
                             anchorPane.getChildren().remove(barcoUmCano);

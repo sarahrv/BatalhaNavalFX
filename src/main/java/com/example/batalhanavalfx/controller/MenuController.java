@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -25,8 +26,16 @@ public class MenuController {
     private Parent root;
     private Stage stage;
 
-    public void onRankingAction(){
-        System.out.println("Ranking");
+
+    public void onRankingAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/ranking-view.fxml"));
+        Parent root = loader.load();
+        stage =(Stage) ((Node)event.getSource()).getScene().getWindow();
+        RankingController controller = new RankingController();
+        controller.displayWinners();
+        scene =  new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 

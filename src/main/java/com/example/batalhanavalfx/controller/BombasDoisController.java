@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class BombasDoisController {
@@ -38,10 +40,10 @@ public class BombasDoisController {
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
             clickedButton.setDisable(true);
-            switchPlayers(event);
-            checkVitoria();
             numCliques ++;
             contaAcertos ++;
+            checkVitoria(contaAcertos);
+            switchPlayers(event);
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
         }else{
             clickedButton.setStyle("-fx-background-color: blue;");
@@ -86,12 +88,26 @@ public class BombasDoisController {
         }
     }
 
-    public void checkTamanhoDoBarco(){
-
+    public void escreveAqrquivo(String fileName, String content) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+        writer.write(content);
+        writer.newLine();
+        writer.close();
     }
-    public void checkVitoria(){
-        if (contaAcertos == playerUm.getNumBarcos()){
-            System.out.println("player dois ganhou");
+
+    public void saveVencedor(Player vencedor) throws IOException {
+        String fileName = "vencedores.txt";
+        String nome = vencedor.getNome();
+        escreveAqrquivo(fileName, nome);
+    }
+
+
+
+    public void checkVitoria(int contaAcertos) throws IOException{
+        if (contaAcertos == playerUm.getNumBarcos()) {
+            Player vecendor = playerDois;
+            saveVencedor(vecendor);
+            System.out.println("player um ganhou");
         }
 
     }
