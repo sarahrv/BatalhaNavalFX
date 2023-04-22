@@ -15,7 +15,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class  BombasController {
+public class  BombasController extends AbstractBombasController{
     @FXML
     private GridPane board;
     private int numCliques = 0;
@@ -30,7 +30,7 @@ public class  BombasController {
     //ajeitar os cliques (colocar sleep ou alert)
     //fazer ranking
 
-    public void getButtonsXY(ActionEvent event) throws IOException {
+    public void getButtonsXY(ActionEvent event) throws IOException{
         Button clickedButton = (Button) event.getSource();
         int row = GridPane.getRowIndex(clickedButton);
         int collumn = GridPane.getColumnIndex(clickedButton);
@@ -68,7 +68,7 @@ public class  BombasController {
             Parent root = loader.load();
             BombasDoisController controller = loader.getController();
             controller.setPlayer(playerUm, playerDois);
-            controller.updateBoard();
+            controller.updateBoard(playerDois);
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -76,35 +76,7 @@ public class  BombasController {
         }
     }
 
-    public void updateBoard() {
-        for (int row = 0; row < 10; row++) {
-            for (int column = 0; column < 10; column++) {
-                int cellValue = playerDois.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula();
-                Button button = (Button) board.getChildren().get(row + column * 10);
-                if (cellValue == 2) {
-                    button.setStyle("-fx-background-color: red;");
-                    button.setDisable(true);
-                } else if (cellValue == 3) {
-                    button.setStyle("-fx-background-color: blue;");
-                    button.setDisable(true);
-                }
 
-            }
-        }
-    }
-
-    public void escreveArquivo(String fileName, String content) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
-        writer.write(content);
-        writer.newLine();
-        writer.close();
-    }
-
-    public void saveVencedor(Player vencedor) throws IOException {
-        String fileName = "vencedores.txt";
-        String nome = vencedor.getNome();
-        escreveArquivo(fileName, nome);
-    }
 
 
     public void checkTamanhoDoBarco() {

@@ -15,7 +15,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class BombasDoisController {
+public class BombasDoisController extends AbstractBombasController {
     @FXML
     private GridPane board;
 
@@ -42,7 +42,7 @@ public class BombasDoisController {
             clickedButton.setDisable(true);
             numCliques ++;
             contaAcertos ++;
-            checkVitoria(contaAcertos);
+            checkVitoria();
             switchPlayers(event);
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
         }else{
@@ -64,27 +64,11 @@ public class BombasDoisController {
             Parent root = loader.load();
             BombasController controller = loader.getController();
             controller.setPlayer(playerUm, playerDois);
-            controller.updateBoard();
+            controller.updateBoard(playerUm);
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        }
-    }
-    public void updateBoard() {
-        for (int row = 0; row < 10; row++) {
-            for (int column = 0; column < 10; column++) {
-                int cellValue = playerUm.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula();
-                Button button = (Button) board.getChildren().get(row + column * 10);
-                if (cellValue == 2) {
-                    button.setStyle("-fx-background-color: red;");
-                    button.setDisable(true);
-                } else if (cellValue == 3) {
-                    button.setStyle("-fx-background-color: blue;");
-                    button.setDisable(true);
-                }
-
-            }
         }
     }
 
@@ -103,7 +87,7 @@ public class BombasDoisController {
 
 
 
-    public void checkVitoria(int contaAcertos) throws IOException{
+    public void checkVitoria() throws IOException{
         if (contaAcertos == playerUm.getNumBarcos()) {
             Player vecendor = playerDois;
             saveVencedor(vecendor);

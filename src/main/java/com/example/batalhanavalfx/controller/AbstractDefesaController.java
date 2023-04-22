@@ -34,6 +34,8 @@ public abstract class AbstractDefesaController {
     private ImageView barcoTresCanos;
     @FXML
     private ImageView barcoQuatroCanos;
+
+    @FXML ImageView portaAviao;
     @FXML
     private GridPane gridDefesa;
 
@@ -51,32 +53,43 @@ public abstract class AbstractDefesaController {
     private BooleanProperty isFlippedBarcoUmCano = new SimpleBooleanProperty(false);
     private BooleanProperty isFlippedBarcoDoisCanos = new SimpleBooleanProperty(false);
     private BooleanProperty isFlippedBarcoTresCanos = new SimpleBooleanProperty(false);
+    private BooleanProperty isFlippedPortaAviao = new SimpleBooleanProperty(false);
 
     public abstract void setPlayer(Player playerUm, Player playerDois);
     public void flipImage(ActionEvent event) {
         Button btn = (Button) event.getSource();
         String id = btn.getId();
 
-        if(id.equals("verticalUm")){
+        if (id.equals("verticalUm")) {
+            double newAngle = isFlippedBarcoUmCano.get() ? 0 : 90;
             RotateTransition rt = new RotateTransition(Duration.millis(500), barcoUmCano);
-            rt.setByAngle(90);
+            rt.setToAngle(newAngle);
             rt.play();
             isFlippedBarcoUmCano.set(!isFlippedBarcoUmCano.get());
-        }
-        else if (id.equals("verticalDois")){
+        } else if (id.equals("verticalDois")) {
+            double newAngle = isFlippedBarcoDoisCanos.get() ? 0 : 90;
             RotateTransition rt = new RotateTransition(Duration.millis(500), barcoDoisCanos);
-            rt.setByAngle(90);
+            rt.setToAngle(newAngle);
             rt.play();
             isFlippedBarcoDoisCanos.set(!isFlippedBarcoDoisCanos.get());
         } else if (id.equals("verticalTres")) {
+            double newAngle = isFlippedBarcoTresCanos.get() ? 0 : 90;
             RotateTransition rt = new RotateTransition(Duration.millis(500), barcoTresCanos);
-            rt.setByAngle(90);
+            rt.setToAngle(newAngle);
             rt.play();
             isFlippedBarcoTresCanos.set(!isFlippedBarcoTresCanos.get());
-        }
+        } else if (id.equals("verticalPortaAviao")) {
+            double newAngle = isFlippedPortaAviao.get() ? 0 : 90;
+            RotateTransition rt = new RotateTransition(Duration.millis(500), portaAviao);
+            rt.setToAngle(newAngle);
+            rt.play();
+            isFlippedPortaAviao.set(!isFlippedPortaAviao.get());
 
+        }
     }
     public void initialize(Player player) throws NullPointerException {
+
+        //ajeitar tamanho da imagem e posicionamento de porta avaiao
 
         Image resizedImage = new Image(barcoUmCano.getImage().getUrl(), 50, 50, true, false);
         barcoUmCano.setImage(resizedImage);
@@ -84,6 +97,8 @@ public abstract class AbstractDefesaController {
         barcoDoisCanos.setImage(resizedImageDois);
         Image resizedImageTres = new Image(barcoTresCanos.getImage().getUrl(), 150, 50, true, false);
         barcoTresCanos.setImage(resizedImageTres);
+        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 200, 150, true, false);
+        portaAviao.setImage(resizedImagePortaAviao);
         for (Node node : gridDefesa.getChildren()) {
             if (node instanceof StackPane) {
 
@@ -96,7 +111,6 @@ public abstract class AbstractDefesaController {
                         int rowIndex = GridPane.getRowIndex(stackPane);
                         int colIndex = GridPane.getColumnIndex(stackPane);
                         String tipoBarco = ((Node) event.getGestureSource()).getId();
-                        //o erro com certeza tá por aqui
                         int controleTamanho = 0;
                         if ("barcoUmCano".equals(tipoBarco)) {
                             controleTamanho = 1;
@@ -116,6 +130,12 @@ public abstract class AbstractDefesaController {
                                         event.acceptTransferModes(TransferMode.MOVE);
                             }
                         }
+                        if(image.getId().equals(portaAviao.getId()) && isFlippedPortaAviao.get() && colIndex + 2 <= 9 && rowIndex + 2 <= 9) {
+                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                                event.acceptTransferModes(TransferMode.MOVE);
+                            }
+
+                        }
 
                         if(image.getId().equals(barcoDoisCanos.getId()) && !isFlippedBarcoDoisCanos.get() && colIndex + controleTamanho - 1 <= 9 && rowIndex <= 9) {
                                 if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
@@ -131,9 +151,12 @@ public abstract class AbstractDefesaController {
                             if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
                                 event.acceptTransferModes(TransferMode.MOVE);
                             }
+                        }if(image.getId().equals(portaAviao.getId()) && !isFlippedPortaAviao.get() && colIndex + 2 <= 9 && rowIndex + 2 <= 9) {
+                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                                event.acceptTransferModes(TransferMode.MOVE);
+                            }
+
                         }
-
-
                     }
 
                     event.consume();
@@ -170,15 +193,34 @@ public abstract class AbstractDefesaController {
 
                         } else if ("barcoTresCanos".equals(tipoBarco)) {
                             droppedImageView.setRotate(isFlippedBarcoTresCanos.get() ? 90 : 0);
-                            if(isFlippedBarcoTresCanos.get()){
+                            if (isFlippedBarcoTresCanos.get()) {
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].setValorCelula(1);
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex + 1][colIndex].setValorCelula(1);
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex + 2][colIndex].setValorCelula(1);
+
+                            } else {
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].setValorCelula(1);
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 1].setValorCelula(1);
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 2].setValorCelula(1);
+                            }
+                            contaBarcos++;
+                            contaTresCanos++;
+                            player.setNumBarcos(contaBarcos);
+                        }else if ("portaAviao".equals(tipoBarco)) {
+                            droppedImageView.setRotate(isFlippedPortaAviao.get() ? 90 : 0);
+                            if(isFlippedPortaAviao.get()){
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].setValorCelula(1);
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 1].setValorCelula(1);
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex ][colIndex + 2].setValorCelula(1);
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex - 1][colIndex + 2].setValorCelula(1);
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex + 1][colIndex + 2].setValorCelula(1);
 
                             }else {
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].setValorCelula(1);
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 1].setValorCelula(1);
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 2].setValorCelula(1);
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex + 1][colIndex+ 1].setValorCelula(1);
+                                player.getTabuleiro().getMatrizBarcos()[rowIndex + 2][colIndex + 1].setValorCelula(1);
                             }
                             contaBarcos ++;
                             contaTresCanos ++;
