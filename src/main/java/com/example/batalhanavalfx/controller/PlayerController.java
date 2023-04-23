@@ -19,7 +19,7 @@ import java.io.IOException;
 public class PlayerController {
     private Stage stage;
     private Scene scene;
-    private String playerName;
+    //private String playerName;
     @FXML
     private Button voltar;
     @FXML

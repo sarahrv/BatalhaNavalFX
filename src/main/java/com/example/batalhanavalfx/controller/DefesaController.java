@@ -20,6 +20,8 @@ import java.io.IOException;
 
 public class DefesaController extends AbstractDefesaController {
     @FXML
+    private Label nomeUmLabel;
+    @FXML
     private AnchorPane anchorPane;
     @FXML
     private ImageView barcoUm;
