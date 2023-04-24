@@ -47,6 +47,7 @@ public abstract class AbstractDefesaController {
     private int contaQuatroCanos = 0;
 
     private int contaBarcos = 0;
+    private int contaPortaAvioes;
 
     private ImageView imagemGiradaAtual;
 
@@ -223,7 +224,7 @@ public abstract class AbstractDefesaController {
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex + 2][colIndex + 1].setValorCelula(1);
                             }
                             contaBarcos ++;
-                            contaTresCanos ++;
+                            contaPortaAvioes ++;
                             player.setNumBarcos(contaBarcos);
 
                         }stackPane.getChildren().add(droppedImageView);
@@ -242,6 +243,12 @@ public abstract class AbstractDefesaController {
                         }
                         if(contaTresCanos == 2){
                             anchorPane.getChildren().remove(barcoTresCanos);
+                        }
+                        /*if(contaQuatroCanos == 1){
+                            anchorPane.getChildren().remove(barcoQuatroCanos);
+                        }*/
+                        if(contaPortaAvioes == 1){
+                            anchorPane.getChildren().remove(portaAviao);
                         }
 
                     }

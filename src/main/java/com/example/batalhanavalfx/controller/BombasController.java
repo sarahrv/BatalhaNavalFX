@@ -35,9 +35,9 @@ public class  BombasController extends AbstractBombasController{
         int row = GridPane.getRowIndex(clickedButton);
         int collumn = GridPane.getColumnIndex(clickedButton);
         int valorCelula = playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula();
-        System.out.println("entrou:" + playerUm.getNome() + " row " + row + " collumn " + collumn);
+        /*System.out.println("entrou:" + playerUm.getNome() + " row " + row + " collumn " + collumn);
         System.out.println(playerDois.getNumBarcos());
-        System.out.println("" + playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
+        System.out.println("" + playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());*/
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
             numCliques++;
@@ -68,11 +68,11 @@ public class  BombasController extends AbstractBombasController{
             Parent root = loader.load();
             BombasDoisController controller = loader.getController();
             controller.setPlayer(playerUm, playerDois);
-            controller.updateBoard(playerDois);
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            controller.updateBoard(playerDois);
         }
     }
 
