@@ -42,6 +42,7 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
 
     protected int contaQuatroCanos = 0;
 
+    private int contaPortaAvioes;
     protected int contaPortaAviao = 0;
 
     protected int contaBarcos = 0;
@@ -219,7 +220,7 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex + 2][colIndex + 1].setValorCelula(1);
                             }
                             contaBarcos ++;
-                            contaPortaAviao ++;
+                            contaPortaAvioes ++;
                             player.setNumBarcos(contaBarcos);
 
                         }stackPane.getChildren().add(droppedImageView);
@@ -238,6 +239,12 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
                         }
                         if(contaTresCanos == 2){
                             anchorPane.getChildren().remove(barcoTresCanos);
+                        }
+                        /*if(contaQuatroCanos == 1){
+                            anchorPane.getChildren().remove(barcoQuatroCanos);
+                        }*/
+                        if(contaPortaAvioes == 1){
+                            anchorPane.getChildren().remove(portaAviao);
                         }
 
                     }
