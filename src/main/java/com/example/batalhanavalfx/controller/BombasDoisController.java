@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -18,13 +20,10 @@ import java.io.IOException;
 public class BombasDoisController extends AbstractBombasController {
     @FXML
     private GridPane board;
-
     private int numCliques = 0;
-
     private int contaAcertos = 0;
     private Player playerUm;
     private Player playerDois;
-
     private Stage stage;
     private Scene scene;
 
@@ -89,9 +88,18 @@ public class BombasDoisController extends AbstractBombasController {
 
     public void checkVitoria() throws IOException{
         if (contaAcertos == playerUm.getNumBarcos()) {
+            ActionEvent e = new ActionEvent();
+            ModoController controller = new ModoController();
             Player vecendor = playerDois;
             saveVencedor(vecendor);
-            System.out.println("player um ganhou");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("GameOver");
+            alert.setHeaderText("Parabéns, Capitão! Você ganhou.");
+            alert.setContentText("Voltar para o menu?");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                controller.switchToMenuController(e);
+                //stage.close();
+            }
         }
 
     }

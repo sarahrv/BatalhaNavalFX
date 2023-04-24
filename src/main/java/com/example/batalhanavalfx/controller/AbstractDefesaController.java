@@ -21,9 +21,6 @@ import javafx.util.Duration;
 import java.util.Objects;
 
 public abstract class AbstractDefesaController {
-    //colocar barcos quatro canos
-    //colocar barcos porta aviao
-
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -34,26 +31,16 @@ public abstract class AbstractDefesaController {
     private ImageView barcoTresCanos;
     @FXML
     private ImageView barcoQuatroCanos;
-
     @FXML ImageView portaAviao;
     @FXML
     private GridPane gridDefesa;
-
     protected int contaUmCano = 0;
     protected int contaDoisCanos = 0;
-
     protected int contaTresCanos = 0;
-
     protected int contaQuatroCanos = 0;
-
-<<<<<<< HEAD
-    private int contaBarcos = 0;
     private int contaPortaAvioes;
-=======
     protected int contaPortaAviao = 0;
-
     protected int contaBarcos = 0;
->>>>>>> 01514bd3f95d8785227e12772a3a1c5962daed0c
 
 
     private BooleanProperty isFlippedBarcoUmCano = new SimpleBooleanProperty(false);
@@ -62,6 +49,7 @@ public abstract class AbstractDefesaController {
     private BooleanProperty isFlippedPortaAviao = new SimpleBooleanProperty(false);
 
     public abstract void setPlayer(Player playerUm, Player playerDois);
+
     public void flipImage(ActionEvent event) {
         Button btn = (Button) event.getSource();
         String id = btn.getId();
@@ -95,16 +83,13 @@ public abstract class AbstractDefesaController {
     }
     public void initialize(Player player) throws NullPointerException {
 
-        //ajeitar porta aviao
-        //ajeitar controleTamanho
-
         Image resizedImage = new Image(barcoUmCano.getImage().getUrl(), 50, 50, true, false);
         barcoUmCano.setImage(resizedImage);
         Image resizedImageDois = new Image(barcoDoisCanos.getImage().getUrl(), 100, 50, true, false);
         barcoDoisCanos.setImage(resizedImageDois);
         Image resizedImageTres = new Image(barcoTresCanos.getImage().getUrl(), 150, 50, true, false);
         barcoTresCanos.setImage(resizedImageTres);
-        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 174, 128, false, false);
+        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 150, 128, false, false);
         portaAviao.setImage(resizedImagePortaAviao);
         for (Node node : gridDefesa.getChildren()) {
             if (node instanceof StackPane) {
@@ -230,11 +215,11 @@ public abstract class AbstractDefesaController {
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex + 2][colIndex + 1].setValorCelula(1);
                             }
                             contaBarcos ++;
-<<<<<<< HEAD
+
                             contaPortaAvioes ++;
-=======
+
                             contaPortaAviao ++;
->>>>>>> 01514bd3f95d8785227e12772a3a1c5962daed0c
+
                             player.setNumBarcos(contaBarcos);
 
                         }stackPane.getChildren().add(droppedImageView);
