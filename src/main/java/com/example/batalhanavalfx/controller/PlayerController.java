@@ -55,7 +55,7 @@ public class PlayerController {
             String nomeDois = nomePlayerDois.getText();
             int numBarcosUm = 0;
             int numBarcosDois = 0;
-            if (nomeUm.length() < 3 || nomeDois.length() < 3) {
+            if (nomeUm.trim().length() < 3 || nomeDois.trim().length() < 3) {
                 throw new InputInvalidoException();
             }
             Player playerUm = new Player(nomeUm, new Tabuleiro(), numBarcosUm, null);

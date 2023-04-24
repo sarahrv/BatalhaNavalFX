@@ -161,11 +161,11 @@
                 <Font name="Arial Black" size="16.0" />
             </font>
         </TextArea>
-        <Button fx:id="proximoDois" layoutX="736.0" layoutY="468.0" mnemonicParsing="false" onAction="#handleProximoDois" text="Próximo" />
+        <Button fx:id="proximoDois" layoutX="838.0" layoutY="544.0" mnemonicParsing="false" onAction="#handleProximoDois" text="Próximo" />
       <Button fx:id="verticalUm" layoutX="651.0" layoutY="149.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
       <Button fx:id="verticalDois" layoutX="651.0" layoutY="205.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
       <Button fx:id="verticalTres" layoutX="651.0" layoutY="285.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
-      <ImageView fx:id="portaAviao" fitHeight="92.0" fitWidth="135.0" layoutX="777.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="portaAviao" fitHeight="128.0" fitWidth="174.0" layoutX="735.0" layoutY="366.0" pickOnBounds="true">
          <image>
             <Image url="@T.png" />
          </image>
