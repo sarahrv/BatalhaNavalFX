@@ -17,10 +17,9 @@ import com.example.batalhanavalfx.model.Tabuleiro;
 import java.io.IOException;
 
 public class PlayerController {
-    //colocar excecao de nome
     private Stage stage;
     private Scene scene;
-    private String playerName;
+    //private String playerName;
     @FXML
     private Button voltar;
     @FXML
@@ -75,6 +74,7 @@ public class PlayerController {
             alert.showAndWait();
         }
     }
+
 
 
 }

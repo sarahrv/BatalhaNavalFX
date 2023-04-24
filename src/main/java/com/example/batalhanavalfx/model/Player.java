@@ -6,6 +6,13 @@ public class Player {
     private String nome;
     private Tabuleiro tabuleiro;
 
+    public Player(String nome, Tabuleiro tabuleiro, int numBarcos, String modo) {
+        this.modo = modo;
+        this.numBarcos = numBarcos;
+        this.nome = nome;
+        this.tabuleiro = tabuleiro;
+    }
+
     public int getNumBarcos() {
         return numBarcos;
     }
@@ -36,16 +43,6 @@ public class Player {
     }
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-
-
-
-    public Player(String nome, Tabuleiro tabuleiro, int numBarcos, String modo) {
-        this.modo = modo;
-        this.numBarcos = numBarcos;
-        this.nome = nome;
-        this.tabuleiro = tabuleiro;
     }
 
 

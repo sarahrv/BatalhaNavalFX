@@ -19,12 +19,15 @@ import java.util.NoSuchElementException;
 public class MenuController {
     @FXML
     private Button jogar;
-
     @FXML
     private Button ranking;
     private Scene scene;
     private Parent root;
     private Stage stage;
+    @FXML
+    private VBox scenePane;
+    @FXML
+    private Button fecharTela;
 
 
     public void onRankingAction(ActionEvent event) throws IOException {
@@ -48,11 +51,16 @@ public class MenuController {
         stage.show();
     }
 
+    /*public void switchToModoController(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/modo-view.fxml"));
+        Parent root = loader.load();
+        ModoController controller = loader.getController();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }*/
 
-    @FXML
-    private VBox scenePane;
-    @FXML
-    private Button fecharTela;
     public void sairTelaAction(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout");
