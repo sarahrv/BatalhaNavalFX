@@ -39,16 +39,17 @@ public abstract class AbstractDefesaController {
     @FXML
     private GridPane gridDefesa;
 
-    private int contaUmCano = 0;
-    private int contaDoisCanos = 0;
+    protected int contaUmCano = 0;
+    protected int contaDoisCanos = 0;
 
-    private int contaTresCanos = 0;
+    protected int contaTresCanos = 0;
 
-    private int contaQuatroCanos = 0;
+    protected int contaQuatroCanos = 0;
 
-    private int contaBarcos = 0;
+    protected int contaPortaAviao = 0;
 
-    private ImageView imagemGiradaAtual;
+    protected int contaBarcos = 0;
+
 
     private BooleanProperty isFlippedBarcoUmCano = new SimpleBooleanProperty(false);
     private BooleanProperty isFlippedBarcoDoisCanos = new SimpleBooleanProperty(false);
@@ -89,7 +90,8 @@ public abstract class AbstractDefesaController {
     }
     public void initialize(Player player) throws NullPointerException {
 
-        //ajeitar tamanho da imagem e posicionamento de porta avaiao
+        //ajeitar porta aviao
+        //ajeitar controleTamanho
 
         Image resizedImage = new Image(barcoUmCano.getImage().getUrl(), 50, 50, true, false);
         barcoUmCano.setImage(resizedImage);
@@ -97,7 +99,7 @@ public abstract class AbstractDefesaController {
         barcoDoisCanos.setImage(resizedImageDois);
         Image resizedImageTres = new Image(barcoTresCanos.getImage().getUrl(), 150, 50, true, false);
         barcoTresCanos.setImage(resizedImageTres);
-        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 200, 150, true, false);
+        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 174, 128, false, false);
         portaAviao.setImage(resizedImagePortaAviao);
         for (Node node : gridDefesa.getChildren()) {
             if (node instanceof StackPane) {
@@ -223,7 +225,7 @@ public abstract class AbstractDefesaController {
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex + 2][colIndex + 1].setValorCelula(1);
                             }
                             contaBarcos ++;
-                            contaTresCanos ++;
+                            contaPortaAviao ++;
                             player.setNumBarcos(contaBarcos);
 
                         }stackPane.getChildren().add(droppedImageView);
@@ -270,6 +272,7 @@ public abstract class AbstractDefesaController {
 
                 imageView.setOnDragDone(event -> {
                     if (event.getTransferMode() == TransferMode.MOVE) {
+                        //tentar deixar a imagem vestical enquanto gira
 
                     }
                     event.consume();

@@ -1,5 +1,7 @@
 package com.example.batalhanavalfx.controller;
 
+import com.example.batalhanavalfx.exception.NumeroDeBarcosCustomException;
+import com.example.batalhanavalfx.exception.NumeroDeBarcosException;
 import com.example.batalhanavalfx.model.Player;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -9,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -43,24 +46,35 @@ public class DefesaController extends AbstractDefesaController {
     @FXML
     private ImageView barcoQuatroCanos;
 
-    private int contaBarcos = 0;
-
-    private BooleanProperty isFlipped = new SimpleBooleanProperty(false);
 
 
 
-    public void handleProximoDois(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/defesa-dois-view.fxml"));
-        Parent root = loader.load();
-        DefesaDoisController controller = loader.getController();
-        controller.setPlayer(playerUm, playerDois);
-        controller.initialize(playerDois);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
 
+    public void handleProximoDois(ActionEvent event) throws IOException, NumeroDeBarcosException, NumeroDeBarcosCustomException {
+        try {
+            if (playerUm.getModo().equals("normal") && contaUmCano < 4) {
+                throw new NumeroDeBarcosException();
+            }
+
+            if (playerUm.getModo().equals("custom") && contaBarcos == 0) {
+                throw new NumeroDeBarcosCustomException();
+            }
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/defesa-dois-view.fxml"));
+            Parent root = loader.load();
+            DefesaDoisController controller = loader.getController();
+            controller.setPlayer(playerUm, playerDois);
+            controller.initialize(playerDois);
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (NumeroDeBarcosException | NumeroDeBarcosCustomException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, e.getMessage());
+            alert.showAndWait();
+        }
     }
+
     @Override
     public void setPlayer(Player playerUm, Player playerDois) {
         this.playerUm = playerUm;
