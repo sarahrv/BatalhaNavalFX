@@ -16,7 +16,6 @@ public class LaunchApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 500, 400);
         stage.setTitle("Batalha Naval");
         stage.setScene(scene);
-        scene.getStylesheets().add(getClass().getResource("HelloView.css").toExternalForm());
         stage.show();
         stage.setOnCloseRequest(event -> {
             event.consume();

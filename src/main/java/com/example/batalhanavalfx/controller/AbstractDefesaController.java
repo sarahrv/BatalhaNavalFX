@@ -13,14 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.util.Duration;
 
-import java.util.Objects;
-
-public abstract class AbstractDefesaController {
+public abstract class AbstractDefesaController implements IControllerTabuleiros {
     //colocar barcos quatro canos
     //colocar barcos porta aviao
 
@@ -90,8 +86,6 @@ public abstract class AbstractDefesaController {
     }
     public void initialize(Player player) throws NullPointerException {
 
-        //ajeitar porta aviao
-        //ajeitar controleTamanho
 
         Image resizedImage = new Image(barcoUmCano.getImage().getUrl(), 50, 50, true, false);
         barcoUmCano.setImage(resizedImage);
@@ -99,7 +93,7 @@ public abstract class AbstractDefesaController {
         barcoDoisCanos.setImage(resizedImageDois);
         Image resizedImageTres = new Image(barcoTresCanos.getImage().getUrl(), 150, 50, true, false);
         barcoTresCanos.setImage(resizedImageTres);
-        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 174, 128, false, false);
+        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 150, 170, false, false);
         portaAviao.setImage(resizedImagePortaAviao);
         for (Node node : gridDefesa.getChildren()) {
             if (node instanceof StackPane) {
@@ -123,12 +117,12 @@ public abstract class AbstractDefesaController {
                         }
 
                         if (image.getId().equals(barcoDoisCanos.getId()) && isFlippedBarcoDoisCanos.get() && rowIndex + controleTamanho - 1 <= 9 && colIndex <= 9) {
-                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex + 1][colIndex].getValorCelula()==0) {
                                 event.acceptTransferModes(TransferMode.MOVE);
                             }
                         }
                         if (image.getId().equals(barcoTresCanos.getId()) && isFlippedBarcoTresCanos.get() && rowIndex + controleTamanho - 1 <= 9 && colIndex <= 9) {
-                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex + 1][colIndex].getValorCelula()==0 && player.getTabuleiro().getMatrizBarcos()[rowIndex + 2][colIndex].getValorCelula()==0) {
                                         event.acceptTransferModes(TransferMode.MOVE);
                             }
                         }
@@ -140,12 +134,12 @@ public abstract class AbstractDefesaController {
                         }
 
                         if(image.getId().equals(barcoDoisCanos.getId()) && !isFlippedBarcoDoisCanos.get() && colIndex + controleTamanho - 1 <= 9 && rowIndex <= 9) {
-                                if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                                if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 1].getValorCelula()==0) {
                                     event.acceptTransferModes(TransferMode.MOVE);
                                 }
                             }
                         if(image.getId().equals(barcoTresCanos.getId()) && !isFlippedBarcoTresCanos.get() && colIndex + controleTamanho - 1 <= 9 && rowIndex <= 9) {
-                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 1].getValorCelula()==0 && player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 2].getValorCelula()==0) {
                                 event.acceptTransferModes(TransferMode.MOVE);
                             }
                         }

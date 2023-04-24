@@ -3,8 +3,6 @@ package com.example.batalhanavalfx.controller;
 import com.example.batalhanavalfx.exception.NumeroDeBarcosCustomException;
 import com.example.batalhanavalfx.exception.NumeroDeBarcosException;
 import com.example.batalhanavalfx.model.Player;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

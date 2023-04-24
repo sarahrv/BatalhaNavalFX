@@ -11,11 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 
-public class  BombasController extends AbstractBombasController{
+public class BombasController extends AbstractBombasController {
     @FXML
     private GridPane board;
     private int numCliques = 0;
@@ -31,6 +29,11 @@ public class  BombasController extends AbstractBombasController{
     //fazer ranking
 
     public void getButtonsXY(ActionEvent event) throws IOException{
+        switchPlayers(event);
+        if (numCliques == 4) {
+            return;
+        }
+
         Button clickedButton = (Button) event.getSource();
         int row = GridPane.getRowIndex(clickedButton);
         int collumn = GridPane.getColumnIndex(clickedButton);
@@ -44,13 +47,11 @@ public class  BombasController extends AbstractBombasController{
             contaAcertos++;
             clickedButton.setDisable(true);
             checkVitoria();
-            switchPlayers(event);
             playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
 
         } else {
             clickedButton.setStyle("-fx-background-color: blue;");
             clickedButton.setDisable(true);
-            switchPlayers(event);
             numCliques++;
             playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
         }

@@ -1,10 +1,5 @@
 package com.example.batalhanavalfx.model;
 
-import com.example.batalhanavalfx.controller.BombasController;
-import javafx.event.ActionEvent;
-
-import java.util.ArrayList;
-
 public class Tabuleiro {
     private Barcos[][] matrizBarcos;
     public Barcos[][] getMatrizBarcos() {
