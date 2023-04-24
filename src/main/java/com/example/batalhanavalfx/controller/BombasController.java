@@ -68,7 +68,7 @@ public class  BombasController extends AbstractBombasController{
             Parent root = loader.load();
             BombasDoisController controller = loader.getController();
             controller.setPlayer(playerUm, playerDois);
-            controller.updateBoard(playerDois);
+            controller.updateBoard(playerUm);
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
