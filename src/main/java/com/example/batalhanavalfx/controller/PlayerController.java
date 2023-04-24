@@ -30,11 +30,6 @@ public class PlayerController {
     @FXML
     private TextField nomePlayerDois;
 
-    public void errorAnimation(Node error, Label errorLabel){
-        error.setStyle("-fx-border-color: red; -fx-border-windth: 2px;");
-        errorLabel.setStyle("-fx-background-color: #ff0000");
-    }
-
 
     public void switchToMenuController(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/menu-view.fxml"));

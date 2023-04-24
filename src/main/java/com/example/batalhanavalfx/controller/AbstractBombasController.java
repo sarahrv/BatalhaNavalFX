@@ -3,9 +3,6 @@ package com.example.batalhanavalfx.controller;
 import com.example.batalhanavalfx.model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -15,7 +12,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public abstract class AbstractBombasController {
+public abstract class AbstractBombasController implements IControllerTabuleiros {
 
         @FXML
         private GridPane board;

@@ -13,11 +13,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 
-public class  BombasController extends AbstractBombasController{
+public class BombasController extends AbstractBombasController {
     @FXML
     private GridPane board;
     private int numCliques = 0;
@@ -28,28 +26,33 @@ public class  BombasController extends AbstractBombasController{
     private Stage stage;
     private Scene scene;
 
-    //criar classe abstrata ou interface
-    //ajeitar os cliques (colocar sleep ou alert)
-    //fazer ranking
 
     public void getButtonsXY(ActionEvent event) throws IOException{
+        switchPlayers(event);
+        if (numCliques == 4) {
+            return;
+        }
+
         Button clickedButton = (Button) event.getSource();
         int row = GridPane.getRowIndex(clickedButton);
         int collumn = GridPane.getColumnIndex(clickedButton);
         int valorCelula = playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula();
+
+        System.out.println("entrou:" + playerUm.getNome() + " row " + row + " collumn " + collumn);
+        System.out.println(playerDois.getNumBarcos());
+        System.out.println("" + playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
+
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
             numCliques++;
             contaAcertos++;
             clickedButton.setDisable(true);
             checkVitoria();
-            switchPlayers(event);
             playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
 
         } else {
             clickedButton.setStyle("-fx-background-color: blue;");
             clickedButton.setDisable(true);
-            switchPlayers(event);
             numCliques++;
             playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
         }

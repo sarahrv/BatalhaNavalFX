@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -11,9 +12,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.batalhanavalfx.controller.DefesaController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="1015.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.batalhanavalfx.controller.DefesaController">
     <children>
-        <GridPane fx:id="gridDefesa" gridLinesVisible="true" layoutX="39.0" layoutY="149.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="421.0" prefWidth="587.0">
+        <GridPane fx:id="gridDefesa" gridLinesVisible="true" layoutX="32.0" layoutY="166.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="449.0" prefWidth="615.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -27,16 +28,16 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="40.33331298828125" minHeight="10.0" prefHeight="36.33331298828125" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="44.00002034505209" minHeight="10.0" prefHeight="40.00002034505209" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="40.000030517578125" minHeight="10.0" prefHeight="33.33331298828125" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="40.000030517578125" minHeight="10.0" prefHeight="33.33331298828125" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="40.000030517578125" minHeight="10.0" prefHeight="33.33331298828125" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="44.6666259765625" minHeight="10.0" prefHeight="44.6666259765625" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="42.3333740234375" minHeight="10.0" prefHeight="38.3333740234375" vgrow="SOMETIMES" />
+                <RowConstraints  minHeight="10.0" prefHeight="100" vgrow="SOMETIMES" />
+                <RowConstraints  minHeight="10.0" prefHeight="100" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="100" vgrow="SOMETIMES" />
+                <RowConstraints  minHeight="10.0" prefHeight="100" vgrow="SOMETIMES" />
+                <RowConstraints  minHeight="10.0" prefHeight="100" vgrow="SOMETIMES" />
+                <RowConstraints  minHeight="10.0" prefHeight="100" vgrow="SOMETIMES" />
+                <RowConstraints  minHeight="10.0" prefHeight="100" vgrow="SOMETIMES" />
+                <RowConstraints  minHeight="10.0" prefHeight="100" vgrow="SOMETIMES" />
+                <RowConstraints  minHeight="10.0" prefHeight="100" vgrow="SOMETIMES" />
+                <RowConstraints  minHeight="10.0" prefHeight="100" vgrow="SOMETIMES" />
             </rowConstraints>
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
@@ -129,7 +130,7 @@
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="8" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="0" />
+            <StackPane prefHeight="73.0" prefWidth="80.0" GridPane.columnIndex="9" GridPane.rowIndex="0" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
@@ -151,25 +152,28 @@
                 <Image url="@navio.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="barcoTresCanos" fitHeight="55.0" fitWidth="165.0" layoutX="729.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="barcoTresCanos" fitHeight="55.0" fitWidth="165.0" layoutX="750.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@navio.png" />
             </image>
         </ImageView>
-        <TextArea editable="false" layoutX="39.0" layoutY="34.0" prefHeight="92.0" prefWidth="486.0" text="Player 1: posicione seus navios arrastando-os para a&#10; posição desejada.&#10;">
+        <TextArea editable="false" layoutX="59.0" layoutY="33.0" prefHeight="92.0" prefWidth="486.0" text="Player 1: posicione seus navios arrastando-os para a&#10; posição desejada.&#10;">
             <font>
                 <Font name="Arial Black" size="16.0" />
             </font>
         </TextArea>
-        <Button fx:id="proximoDois" layoutX="838.0" layoutY="544.0" mnemonicParsing="false" onAction="#handleProximoDois" text="Próximo" />
-      <Button fx:id="verticalUm" layoutX="651.0" layoutY="149.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
-      <Button fx:id="verticalDois" layoutX="651.0" layoutY="205.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
-      <Button fx:id="verticalTres" layoutX="651.0" layoutY="285.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
-      <ImageView fx:id="portaAviao" fitHeight="128.0" fitWidth="174.0" layoutX="735.0" layoutY="366.0" pickOnBounds="true">
+        <Button fx:id="proximoDois" layoutX="906.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleProximoDois" text="Próximo" />
+      <Button fx:id="verticalUm" layoutX="672.0" layoutY="194.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
+      <Button fx:id="verticalDois" layoutX="672.0" layoutY="250.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
+      <Button fx:id="verticalTres" layoutX="672.0" layoutY="330.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
+      <Button fx:id="verticalPortaAviao" layoutX="672.0" layoutY="495.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
+      <ImageView fx:id="portaAviao" fitHeight="115.0" fitWidth="200.0" layoutX="729.0" layoutY="391.0">
          <image>
-            <Image url="@T.png" />
+            <Image url="@T3.png" />
          </image>
       </ImageView>
-      <Button fx:id="verticalPortaAviao" layoutX="661.0" layoutY="380.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
     </children>
+   <cursor>
+      <Cursor fx:constant="CLOSED_HAND" />
+   </cursor>
 </AnchorPane>

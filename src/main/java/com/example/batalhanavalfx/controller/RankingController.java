@@ -15,19 +15,22 @@ import java.util.Scanner;
 
 public class RankingController {
 
-    @FXML
-    public TextArea winnerTextArea;
     private Stage stage;
     private Scene scene;
 
-    //botao pra voltar pro menu
-    //um ranking pra cada modo?
-    public void displayWinners() throws NullPointerException{
+    @FXML
+    public TextArea winnerTextArea;
+
+    public void displayWinners() {
         try (BufferedReader reader = new BufferedReader(new FileReader("vencedores.txt"))) {
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
-                sb.append(line).append("\n");
+                String[] parts = line.split(" - ");
+                String nome = parts[0];
+                int numberClicks = Integer.parseInt(parts[1]);
+                String content = nome + " - " + numberClicks + " clicks\n";
+                sb.append(content);
             }
             winnerTextArea.setText(sb.toString());
         } catch (IOException e) {

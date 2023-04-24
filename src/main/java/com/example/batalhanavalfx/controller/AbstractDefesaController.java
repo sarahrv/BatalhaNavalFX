@@ -13,14 +13,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.util.Duration;
 
-import java.util.Objects;
 
-public abstract class AbstractDefesaController {
+import java.util.Objects;
+public abstract class AbstractDefesaController implements IControllerTabuleiros {
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -38,7 +36,6 @@ public abstract class AbstractDefesaController {
     protected int contaDoisCanos = 0;
     protected int contaTresCanos = 0;
     protected int contaQuatroCanos = 0;
-    private int contaPortaAvioes;
     protected int contaPortaAviao = 0;
     protected int contaBarcos = 0;
 
@@ -89,7 +86,10 @@ public abstract class AbstractDefesaController {
         barcoDoisCanos.setImage(resizedImageDois);
         Image resizedImageTres = new Image(barcoTresCanos.getImage().getUrl(), 150, 50, true, false);
         barcoTresCanos.setImage(resizedImageTres);
-        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 150, 128, false, false);
+
+
+        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 200, 115, false, false);
+
         portaAviao.setImage(resizedImagePortaAviao);
         for (Node node : gridDefesa.getChildren()) {
             if (node instanceof StackPane) {
@@ -113,12 +113,12 @@ public abstract class AbstractDefesaController {
                         }
 
                         if (image.getId().equals(barcoDoisCanos.getId()) && isFlippedBarcoDoisCanos.get() && rowIndex + controleTamanho - 1 <= 9 && colIndex <= 9) {
-                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex + 1][colIndex].getValorCelula()==0) {
                                 event.acceptTransferModes(TransferMode.MOVE);
                             }
                         }
                         if (image.getId().equals(barcoTresCanos.getId()) && isFlippedBarcoTresCanos.get() && rowIndex + controleTamanho - 1 <= 9 && colIndex <= 9) {
-                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex + 1][colIndex].getValorCelula()==0 && player.getTabuleiro().getMatrizBarcos()[rowIndex + 2][colIndex].getValorCelula()==0) {
                                         event.acceptTransferModes(TransferMode.MOVE);
                             }
                         }
@@ -130,12 +130,12 @@ public abstract class AbstractDefesaController {
                         }
 
                         if(image.getId().equals(barcoDoisCanos.getId()) && !isFlippedBarcoDoisCanos.get() && colIndex + controleTamanho - 1 <= 9 && rowIndex <= 9) {
-                                if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                                if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 1].getValorCelula()==0) {
                                     event.acceptTransferModes(TransferMode.MOVE);
                                 }
                             }
                         if(image.getId().equals(barcoTresCanos.getId()) && !isFlippedBarcoTresCanos.get() && colIndex + controleTamanho - 1 <= 9 && rowIndex <= 9) {
-                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0) {
+                            if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 1].getValorCelula()==0 && player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex + 2].getValorCelula()==0) {
                                 event.acceptTransferModes(TransferMode.MOVE);
                             }
                         }
@@ -215,11 +215,7 @@ public abstract class AbstractDefesaController {
                                 player.getTabuleiro().getMatrizBarcos()[rowIndex + 2][colIndex + 1].setValorCelula(1);
                             }
                             contaBarcos ++;
-
-                            contaPortaAvioes ++;
-
                             contaPortaAviao ++;
-
                             player.setNumBarcos(contaBarcos);
 
                         }stackPane.getChildren().add(droppedImageView);
@@ -239,12 +235,7 @@ public abstract class AbstractDefesaController {
                         if(contaTresCanos == 2){
                             anchorPane.getChildren().remove(barcoTresCanos);
                         }
-                        /*if(contaQuatroCanos == 1){
-                            anchorPane.getChildren().remove(barcoQuatroCanos);
-                        }*/
-                        if(contaPortaAvioes == 1){
-                            anchorPane.getChildren().remove(portaAviao);
-                        }
+
 
                     }
 

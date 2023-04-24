@@ -28,37 +28,41 @@ public class BombasDoisController extends AbstractBombasController {
     private Scene scene;
 
 
-    public void getButtonsXY(ActionEvent event) throws IOException{
+    public void getButtonsXY(ActionEvent event) throws IOException {
+        switchPlayers(event);
+        if (numCliques == 4) {
+            return;
+        }
         Button clickedButton = (Button) event.getSource();
         int row = GridPane.getRowIndex(clickedButton);
         int collumn = GridPane.getColumnIndex(clickedButton);
         int valorCelula = playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula();
-        System.out.println("entrou b2:"+playerDois.getNome()+" row "+row+" collumn "+collumn);
-        System.out.println(""+playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
+        System.out.println("entrou b2:" + playerDois.getNome() + " row " + row + " collumn " + collumn);
+        System.out.println("" + playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
         System.out.println(playerUm.getNumBarcos());
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
             clickedButton.setDisable(true);
-            numCliques ++;
-            contaAcertos ++;
+            numCliques++;
+            contaAcertos++;
             checkVitoria();
-            switchPlayers(event);
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
-        }else{
+        } else {
             clickedButton.setStyle("-fx-background-color: blue;");
             clickedButton.setDisable(true);
-            switchPlayers(event);
-            numCliques ++;
+            numCliques++;
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
         }
 
     }
-    public void setPlayer(Player playerUm, Player playerDois){
+
+    public void setPlayer(Player playerUm, Player playerDois) {
         this.playerUm = playerUm;
         this.playerDois = playerDois;
     }
+
     public void switchPlayers(ActionEvent event) throws IOException {
-        if(numCliques == 4){
+        if (numCliques == 4) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/bomba-view.fxml"));
             Parent root = loader.load();
             BombasController controller = loader.getController();
@@ -85,8 +89,7 @@ public class BombasDoisController extends AbstractBombasController {
     }
 
 
-
-    public void checkVitoria() throws IOException{
+    public void checkVitoria() throws IOException {
         if (contaAcertos == playerUm.getNumBarcos()) {
             ActionEvent e = new ActionEvent();
             ModoController controller = new ModoController();
@@ -100,10 +103,33 @@ public class BombasDoisController extends AbstractBombasController {
                 controller.switchToMenuController(e);
                 //stage.close();
             }
+
+            public void escreveAqrquivo (String fileName, String content) throws IOException {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+                writer.write(content);
+                writer.newLine();
+                writer.close();
+
+            }
+
+            public void saveVencedor (Player vencedor,int numCliques) throws IOException {
+                String fileName = "vencedores.txt";
+                String nome = vencedor.getNome();
+                String conteudo = nome + "-" + numCliques;
+                escreveAqrquivo(fileName, nome);
+            }
+
+
+            public void checkVitoria () throws IOException {
+                if (contaAcertos == playerUm.getNumBarcos()) {
+                    Player vecendor = playerDois;
+                    saveVencedor(vecendor, numCliques);
+                    System.out.println("player um ganhou");
+                }
+
+            }
         }
 
     }
 }
-
-
 
