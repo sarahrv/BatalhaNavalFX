@@ -94,7 +94,7 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
         barcoDoisCanos.setImage(resizedImageDois);
         Image resizedImageTres = new Image(barcoTresCanos.getImage().getUrl(), 150, 50, true, false);
         barcoTresCanos.setImage(resizedImageTres);
-        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 150, 170, false, false);
+        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 200, 115, false, false);
         portaAviao.setImage(resizedImagePortaAviao);
         for (Node node : gridDefesa.getChildren()) {
             if (node instanceof StackPane) {
@@ -240,12 +240,7 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
                         if(contaTresCanos == 2){
                             anchorPane.getChildren().remove(barcoTresCanos);
                         }
-                        /*if(contaQuatroCanos == 1){
-                            anchorPane.getChildren().remove(barcoQuatroCanos);
-                        }*/
-                        if(contaPortaAvioes == 1){
-                            anchorPane.getChildren().remove(portaAviao);
-                        }
+
 
                     }
 

@@ -1,11 +1,10 @@
 testeDois
 bbb
 ahr
-<<<<<<< HEAD
 jjjj
 bbb
 bbb
-=======
 sasa
 hsb
->>>>>>> 396853210becc103ae5dd4e2b19fd569a37e9748
+bbb
+aaa

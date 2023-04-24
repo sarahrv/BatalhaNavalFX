@@ -30,6 +30,10 @@ public class BombasDoisController extends AbstractBombasController {
 
 
     public void getButtonsXY(ActionEvent event) throws IOException{
+        switchPlayers(event);
+        if (numCliques == 4) {
+            return;
+        }
         Button clickedButton = (Button) event.getSource();
         int row = GridPane.getRowIndex(clickedButton);
         int collumn = GridPane.getColumnIndex(clickedButton);
@@ -43,12 +47,10 @@ public class BombasDoisController extends AbstractBombasController {
             numCliques ++;
             contaAcertos ++;
             checkVitoria();
-            switchPlayers(event);
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
         }else{
             clickedButton.setStyle("-fx-background-color: blue;");
             clickedButton.setDisable(true);
-            switchPlayers(event);
             numCliques ++;
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
         }
@@ -72,30 +74,31 @@ public class BombasDoisController extends AbstractBombasController {
         }
     }
 
-    public void escreveAqrquivo(String fileName, String content) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
-        writer.write(content);
-        writer.newLine();
-        writer.close();
-    }
-
-    public void saveVencedor(Player vencedor) throws IOException {
-        String fileName = "vencedores.txt";
-        String nome = vencedor.getNome();
-        escreveAqrquivo(fileName, nome);
-    }
-
-
-
-    public void checkVitoria() throws IOException{
-        if (contaAcertos == playerUm.getNumBarcos()) {
-            Player vecendor = playerDois;
-            saveVencedor(vecendor);
-            System.out.println("player um ganhou");
+        public void escreveAqrquivo(String fileName, String content) throws IOException {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+            writer.write(content);
+            writer.newLine();
+            writer.close();
         }
 
+        public void saveVencedor(Player vencedor, int numCliques) throws IOException {
+            String fileName = "vencedores.txt";
+            String nome = vencedor.getNome();
+            String conteudo = nome + "-" + numCliques;
+            escreveAqrquivo(fileName, nome);
+        }
+
+
+
+        public void checkVitoria() throws IOException{
+            if (contaAcertos == playerUm.getNumBarcos()) {
+                Player vecendor = playerDois;
+                saveVencedor(vecendor, numCliques);
+                System.out.println("player um ganhou");
+            }
+
+        }
     }
-}
 
 
 
