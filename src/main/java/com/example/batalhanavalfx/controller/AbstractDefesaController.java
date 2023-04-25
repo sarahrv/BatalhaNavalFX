@@ -89,13 +89,13 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
     public void initialize(Player player) throws NullPointerException, IndexOutOfBoundsException, NegativeArraySizeException, ArrayIndexOutOfBoundsException {
 
 
-        Image resizedImage = new Image(barcoUmCano.getImage().getUrl(), 70, 90, false, false);
+        Image resizedImage = new Image(barcoUmCano.getImage().getUrl(), 50, 50, false, false);
         barcoUmCano.setImage(resizedImage);
-        Image resizedImageDois = new Image(barcoDoisCanos.getImage().getUrl(), 120, 92, false, false);
+        Image resizedImageDois = new Image(barcoDoisCanos.getImage().getUrl(), 100, 70, false, false);
         barcoDoisCanos.setImage(resizedImageDois);
-        Image resizedImageTres = new Image(barcoTresCanos.getImage().getUrl(), 195, 92, false, false);
+        Image resizedImageTres = new Image(barcoTresCanos.getImage().getUrl(), 150, 70, false, false);
         barcoTresCanos.setImage(resizedImageTres);
-        Image resizedImageQuatro = new Image(barcoQuatroCanos.getImage().getUrl(), 296, 75, false, false);
+        Image resizedImageQuatro = new Image(barcoQuatroCanos.getImage().getUrl(), 220, 75, false, false);
         barcoQuatroCanos.setImage(resizedImageQuatro);
         Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 200, 115, false, false);
 

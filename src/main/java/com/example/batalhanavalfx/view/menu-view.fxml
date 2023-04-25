@@ -6,18 +6,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="scenePane" alignment="CENTER" prefHeight="435.0" prefWidth="498.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.batalhanavalfx.controller.MenuController">
+<VBox fx:id="scenePane" alignment="CENTER" prefHeight="400.0" prefWidth="500.0" spacing="20.0"  xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.batalhanavalfx.controller.MenuController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <Label fx:id="welcomeText" alignment="CENTER" prefHeight="69.0" prefWidth="246.0" text="Batalha Naval" textAlignment="CENTER">
-      <font>
-         <Font name="Book Antiqua" size="36.0" />
-      </font>
-      <VBox.margin>
-         <Insets />
-      </VBox.margin></Label>
-    <Button fx:id="jogar" onAction="#switchToPlayerController" text="Jogar" />
-   <Button fx:id="ranking" mnemonicParsing="false" onAction="#onRankingAction" text="Ranking" />
-    <Button fx:id="sair" mnemonicParsing="false" onAction="#sairTelaAction" text="Sair" />
+        <font>
+            <Font name="Book Antiqua" size="36.0" />
+        </font>
+        <VBox.margin>
+            <Insets />
+        </VBox.margin></Label>
+    <Button fx:id="jogar" onAction="#switchToPlayerController" prefHeight="32.0" prefWidth="70.0" text="Jogar">
+        <font>
+            <Font name="Book Antiqua" size="14.0" />
+        </font></Button>
+    <Button fx:id="ranking" mnemonicParsing="false" onAction="#onRankingAction" prefHeight="34.0" prefWidth="71.0" text="Ranking">
+        <font>
+            <Font name="Book Antiqua" size="14.0" />
+        </font></Button>
+    <Button fx:id="sair" mnemonicParsing="false" onAction="#sairTelaAction" text="Sair">
+        <font>
+            <Font name="Book Antiqua" size="13.0" />
+        </font></Button>
 </VBox>

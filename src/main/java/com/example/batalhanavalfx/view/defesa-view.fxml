@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="1015.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.batalhanavalfx.controller.DefesaController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="934.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.batalhanavalfx.controller.DefesaController">
     <children>
-        <GridPane fx:id="gridDefesa" gridLinesVisible="true" layoutX="32.0" layoutY="166.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="449.0" prefWidth="615.0">
+        <GridPane fx:id="gridDefesa" gridLinesVisible="true" layoutX="32.0" layoutY="166.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="90.0" prefWidth="100.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="50" prefWidth="50.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="50" prefWidth="50.0" />
@@ -142,42 +142,60 @@
             <StackPane prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="9" GridPane.rowIndex="9" />
          </children>
         </GridPane>
-        <TextArea editable="false" layoutX="59.0" layoutY="33.0" prefHeight="92.0" prefWidth="486.0" text="Player 1: posicione seus navios arrastando-os para a&#10; posição desejada.&#10;">
+        <TextArea editable="false" layoutX="39.0" layoutY="52.0" prefHeight="92.0" prefWidth="486.0" text="Player 1: posicione seus navios arrastando-os para a&#10; posição desejada.&#10;">
             <font>
                 <Font name="Arial Black" size="16.0" />
             </font>
         </TextArea>
-        <Button fx:id="proximoDois" layoutX="906.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleProximoDois" text="Próximo" />
-      <Button fx:id="verticalUm" layoutX="714.0" layoutY="130.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
-      <Button fx:id="verticalDois" layoutX="714.0" layoutY="225.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
-      <ImageView fx:id="barcoUmCano" fitHeight="68.0" fitWidth="105.0" layoutX="776.0" layoutY="109.0">
+        <Button fx:id="proximoDois" layoutX="741.0" layoutY="638.0" mnemonicParsing="false" onAction="#handleProximoDois" text="Próximo">
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font></Button>
+      <Button fx:id="verticalUm" layoutX="595.0" layoutY="131.0" mnemonicParsing="false" onAction="#flipImage" text="Girar">
+         <font>
+            <Font name="Book Antiqua" size="13.0" />
+         </font></Button>
+      <Button fx:id="verticalDois" layoutX="595.0" layoutY="226.0" mnemonicParsing="false" onAction="#flipImage" text="Girar">
+         <font>
+            <Font name="Book Antiqua" size="13.0" />
+         </font></Button>
+      <ImageView fx:id="barcoUmCano" fitHeight="68.0" fitWidth="105.0" layoutX="689.0" layoutY="109.0">
          <image>
             <Image url="@pngwing.com (1).png" />
          </image>
       </ImageView>
-      <Button fx:id="verticalTres" layoutX="714.0" layoutY="322.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
-      <Button fx:id="verticalPortaAviao" layoutX="672.0" layoutY="526.0" mnemonicParsing="false" onAction="#flipImage" text="Girar" />
-      <ImageView fx:id="portaAviao" fitHeight="115.0" fitWidth="174.0" layoutX="735.0" layoutY="494.0">
+      <Button fx:id="verticalTres" layoutX="595.0" layoutY="322.0" mnemonicParsing="false" onAction="#flipImage" text="Girar">
+         <font>
+            <Font name="Book Antiqua" size="13.0" />
+         </font></Button>
+      <Button fx:id="verticalPortaAviao" layoutX="595.0" layoutY="553.0" mnemonicParsing="false" onAction="#flipImage" text="Girar">
+         <font>
+            <Font name="Book Antiqua" size="13.0" />
+         </font></Button>
+      <ImageView fx:id="portaAviao" fitHeight="115.0" fitWidth="174.0" layoutX="667.0" layoutY="508.0">
          <image>
             <Image url="@T3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="barcoDoisCanos" fitHeight="92.0" fitWidth="163.0" layoutX="763.0" layoutY="192.0">
+      <ImageView fx:id="barcoDoisCanos" fitHeight="92.0" fitWidth="163.0" layoutX="673.0" layoutY="193.0">
          <image>
             <Image url="@pngwing.com (1).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="barcoTresCanos" fitHeight="92.0" fitWidth="195.0" layoutX="763.0" layoutY="276.0">
+      <ImageView fx:id="barcoTresCanos" fitHeight="92.0" fitWidth="195.0" layoutX="666.0" layoutY="289.0">
          <image>
             <Image url="@pngwing.com (1).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="barcoQuatroCanos" fitHeight="79.0" fitWidth="296.0" layoutX="705.0" layoutY="376.0">
+      <ImageView fx:id="barcoQuatroCanos" fitHeight="79.0" fitWidth="296.0" layoutX="653.0" layoutY="389.0">
          <image>
             <Image url="@pngwing.com (1).png" />
          </image>
       </ImageView>
-      <Button fx:id="verticalQuatroCanos" layoutX="667.0" layoutY="403.0" mnemonicParsing="false" text="Girar" />
+      <Button fx:id="verticalQuatroCanos" layoutX="595.0" layoutY="416.0" mnemonicParsing="false" text="Girar">
+         <font>
+            <Font name="Book Antiqua" size="13.0" />
+         </font></Button>
     </children>
    <cursor>
       <Cursor fx:constant="CLOSED_HAND" />
