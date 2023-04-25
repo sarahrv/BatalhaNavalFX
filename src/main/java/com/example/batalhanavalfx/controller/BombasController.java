@@ -1,6 +1,7 @@
 package com.example.batalhanavalfx.controller;
 
 import com.example.batalhanavalfx.model.Player;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,9 @@ public class BombasController extends AbstractBombasController {
 
     private Stage stage;
     private Scene scene;
+
+    private Stage stage2;
+    private Scene scene2;
 
 
     public void getButtonsXY(ActionEvent event) throws IOException{
@@ -122,21 +126,17 @@ public class BombasController extends AbstractBombasController {
             }
 
 
-        }if (!playerAindaTemBarco) {
-            saveVencedor(playerUm);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Você ganhou," + playerUm.getNome() + "!" +"Clique em 'OK' para voltar para o menu.", ButtonType.OK);
-            alert.showAndWait();
-            if (alert.getResult() == ButtonType.OK) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/menu-view.fxml"));
-                Parent root = loader.load();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }
         }
-    }
-
-}
+        if (!playerAindaTemBarco) {
+            saveVencedor(playerUm);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Você ganhou, " + playerUm.getNome() + "!", ButtonType.OK);
+            Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+            okButton.setOnAction(e -> {
+                Platform.exit();
+            });
+            alert.showAndWait();
+        }
+    }}
 
 
 

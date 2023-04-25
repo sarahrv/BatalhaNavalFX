@@ -86,7 +86,7 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
             isFlippedBarcoQuatroCanos.set(!isFlippedBarcoQuatroCanos.get());
         }
     }
-    public void initialize(Player player) throws NullPointerException {
+    public void initialize(Player player) throws NullPointerException, IndexOutOfBoundsException {
 
 
         Image resizedImage = new Image(barcoUmCano.getImage().getUrl(), 70, 90, false, false);

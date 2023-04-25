@@ -40,7 +40,6 @@ public class DefesaDoisController extends AbstractDefesaController {
     @FXML
     private ImageView barcoQuatroCanos;
 
-    private int contaBarcos = 0;
 
     @Override
     public void setPlayer(Player playerUm, Player playerDois){

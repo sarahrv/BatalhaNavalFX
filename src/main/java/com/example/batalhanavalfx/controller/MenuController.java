@@ -23,6 +23,11 @@ public class MenuController {
     private Button ranking;
     private Scene scene;
     private Parent root;
+
+    public Stage getStage() {
+        return stage;
+    }
+
     private Stage stage;
     @FXML
     private VBox scenePane;
@@ -51,15 +56,6 @@ public class MenuController {
         stage.show();
     }
 
-    /*public void switchToModoController(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/modo-view.fxml"));
-        Parent root = loader.load();
-        ModoController controller = loader.getController();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }*/
 
     public void sairTelaAction(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -73,5 +69,8 @@ public class MenuController {
 
         }
         }
+    }
+
+    public void setStage(Stage stage) {
     }
 }
