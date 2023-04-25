@@ -86,7 +86,7 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
             isFlippedBarcoQuatroCanos.set(!isFlippedBarcoQuatroCanos.get());
         }
     }
-    public void initialize(Player player) throws NullPointerException, IndexOutOfBoundsException {
+    public void initialize(Player player) throws NullPointerException, IndexOutOfBoundsException, NegativeArraySizeException, ArrayIndexOutOfBoundsException {
 
 
         Image resizedImage = new Image(barcoUmCano.getImage().getUrl(), 70, 90, false, false);
@@ -257,6 +257,12 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
                         }
                         if(contaTresCanos == 2){
                             anchorPane.getChildren().remove(barcoTresCanos);
+                        }
+                        if(contaQuatroCanos == 1){
+                            anchorPane.getChildren().remove(barcoQuatroCanos);
+                        }
+                        if(contaPortaAviao == 1){
+                            anchorPane.getChildren().remove(portaAviao);
                         }
 
 
