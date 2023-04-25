@@ -19,18 +19,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class BombasController extends AbstractBombasController {
+
+    private int numCliques;
     @FXML
     private GridPane board;
 
-    public int getNumCliques() {
-        return numCliques;
-    }
-
-    public void setNumCliques(int numCliques) {
-        this.numCliques = numCliques;
-    }
-
-    private int numCliques = 0;
     private Player playerUm;
     private Player playerDois;
 
@@ -42,6 +35,8 @@ public class BombasController extends AbstractBombasController {
 
 
     public void getButtonsXY(ActionEvent event) throws IOException{
+        numCliques ++;
+        playerUm.setNumTiros(numCliques);
         switchPlayers(event);
         if (numCliques == 4) {
             return;
@@ -56,16 +51,12 @@ public class BombasController extends AbstractBombasController {
 
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
-            numCliques ++;
-            playerUm.setNumTiros(numCliques);
             checkVitoria();
             clickedButton.setDisable(true);
             playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
 
         } else {
             clickedButton.setStyle("-fx-background-color: blue;");
-            numCliques ++;
-            playerUm.setNumTiros(numCliques);
             clickedButton.setDisable(true);
             playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
         }
@@ -106,7 +97,7 @@ public class BombasController extends AbstractBombasController {
     public void saveVencedor(Player vencedor) throws IOException {
         String fileName = "vencedores.txt";
         String nome = vencedor.getNome();
-        int numCliques = vencedor.getNumTiros();
+        int numCliques = vencedor.getNumTiros() - 1;
         String conteudo = nome + "-" + numCliques;
         escreveAqrquivo(fileName, conteudo);
     }

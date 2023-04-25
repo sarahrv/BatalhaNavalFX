@@ -16,8 +16,16 @@ public abstract class AbstractBombasController implements IControllerTabuleiros 
 
         @FXML
         private GridPane board;
-        private int numCliques = 0;
-        private int contaAcertos = 0;
+
+    public int getNumCliques() {
+        return numCliques;
+    }
+
+    public void setNumCliques(int numCliques) {
+        this.numCliques = numCliques;
+    }
+
+    protected int numCliques = 0;
         private Player playerUm;
         private Player playerDois;
 

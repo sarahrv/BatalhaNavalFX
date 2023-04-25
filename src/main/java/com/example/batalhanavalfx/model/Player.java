@@ -19,7 +19,7 @@ public class Player {
         return numTiros;
     }
 
-    public void setNumTiros(int numBarcos) {
+    public void setNumTiros(int numTiros) {
         this.numTiros = numTiros;
     }
 
