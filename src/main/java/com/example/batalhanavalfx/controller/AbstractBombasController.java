@@ -24,7 +24,6 @@ public abstract class AbstractBombasController implements IControllerTabuleiros 
         private Stage stage;
         private Scene scene;
 
-        //ajeitar os cliques (colocar sleep ou alert)
 
         public abstract void getButtonsXY(ActionEvent event) throws IOException;
 

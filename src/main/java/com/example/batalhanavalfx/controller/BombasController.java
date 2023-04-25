@@ -20,6 +20,15 @@ import java.io.IOException;
 public class BombasController extends AbstractBombasController {
     @FXML
     private GridPane board;
+
+    public int getNumCliques() {
+        return numCliques;
+    }
+
+    public void setNumCliques(int numCliques) {
+        this.numCliques = numCliques;
+    }
+
     private int numCliques = 0;
     private Player playerUm;
     private Player playerDois;
@@ -38,36 +47,27 @@ public class BombasController extends AbstractBombasController {
         int row = GridPane.getRowIndex(clickedButton);
         int collumn = GridPane.getColumnIndex(clickedButton);
         int valorCelula = playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula();
-        System.out.println(playerDois.getNumBarcos());
-
         System.out.println("entrou:" + playerUm.getNome() + " row " + row + " collumn " + collumn);
-        System.out.println(playerDois.getNumBarcos());
         System.out.println("" + playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
 
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
-            numCliques++;
+            numCliques ++;
+            playerUm.setNumTiros(numCliques);
             checkVitoria();
             clickedButton.setDisable(true);
             playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
 
         } else {
             clickedButton.setStyle("-fx-background-color: blue;");
+            numCliques ++;
+            playerUm.setNumTiros(numCliques);
             clickedButton.setDisable(true);
-            numCliques++;
             playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
         }
 
     }
 
-    public void switchToMenuController(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/menu-view.fxml"));
-        Parent root = loader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     public void setPlayer(Player playerUm, Player playerDois) {
         this.playerUm = playerUm;
@@ -99,9 +99,10 @@ public class BombasController extends AbstractBombasController {
         writer.close();
     }
 
-    public void saveVencedor(Player vencedor, int numCliques) throws IOException {
+    public void saveVencedor(Player vencedor) throws IOException {
         String fileName = "vencedores.txt";
         String nome = vencedor.getNome();
+        int numCliques = vencedor.getNumTiros();
         String conteudo = nome + "-" + numCliques;
         escreveAqrquivo(fileName, conteudo);
     }
@@ -121,13 +122,19 @@ public class BombasController extends AbstractBombasController {
             }
 
 
-        }if(!playerAindaTemBarco){
-            saveVencedor(playerDois, numCliques);
-            System.out.println("player dois ganhou");
-
+        }if (!playerAindaTemBarco) {
+            saveVencedor(playerUm);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Você ganhou," + playerUm.getNome() + "!" +"Clique em 'OK' para voltar para o menu.", ButtonType.OK);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.OK) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/menu-view.fxml"));
+                Parent root = loader.load();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
         }
     }
-
 
 }
 

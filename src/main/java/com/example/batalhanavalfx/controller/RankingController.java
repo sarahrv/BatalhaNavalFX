@@ -30,7 +30,7 @@ public class RankingController {
                 if (parts.length == 2) {
                     String nome = parts[0];
                     int numberClicks = Integer.parseInt(parts[1]);
-                    String content = nome + " - " + numberClicks + " clicks\n";
+                    String content = nome + " - " + numberClicks + " tiros\n";
                     sb.append(content);
                 } else {
                     System.err.println("Invalid line format: " + line);

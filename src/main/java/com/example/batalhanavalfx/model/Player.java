@@ -6,21 +6,21 @@ public class Player {
     private String nome;
     private Tabuleiro tabuleiro;
     private String modo;
-    private int numBarcos;
+    private int numTiros;
 
     public Player(String nome, Tabuleiro tabuleiro, int numBarcos, String modo) {
         this.modo = modo;
-        this.numBarcos = numBarcos;
+        this.numTiros = numBarcos;
         this.nome = nome;
         this.tabuleiro = tabuleiro;
     }
 
-    public int getNumBarcos() {
-        return numBarcos;
+    public int getNumTiros() {
+        return numTiros;
     }
 
-    public void setNumBarcos(int numBarcos) {
-        this.numBarcos = numBarcos;
+    public void setNumTiros(int numBarcos) {
+        this.numTiros = numTiros;
     }
 
     public String getModo() {

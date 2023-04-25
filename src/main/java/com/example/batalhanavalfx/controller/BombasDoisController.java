@@ -38,17 +38,18 @@ public class BombasDoisController extends AbstractBombasController {
         int valorCelula = playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula();
         System.out.println("entrou b2:" + playerDois.getNome() + " row " + row + " collumn " + collumn);
         System.out.println("" + playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
-        System.out.println(playerUm.getNumBarcos());
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
             clickedButton.setDisable(true);
             numCliques++;
+            playerDois.setNumTiros(numCliques);
             checkVitoria();
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
         } else {
             clickedButton.setStyle("-fx-background-color: blue;");
             clickedButton.setDisable(true);
             numCliques++;
+            playerDois.setNumTiros(numCliques);
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
         }
 
@@ -81,9 +82,10 @@ public class BombasDoisController extends AbstractBombasController {
         writer.close();
     }
 
-    public void saveVencedor(Player vencedor, int numCliques) throws IOException {
+    public void saveVencedor(Player vencedor) throws IOException {
             String fileName = "vencedores.txt";
             String nome = vencedor.getNome();
+            int numCliques = vencedor.getNumTiros();
             String conteudo = nome + "-" + numCliques;
             escreveAqrquivo(fileName, conteudo);
     }
@@ -103,12 +105,20 @@ public class BombasDoisController extends AbstractBombasController {
             }
 
 
-        }if(!playerAindaTemBarco){
-            saveVencedor(playerUm, numCliques);
-            System.out.println("player um ganhou");
-
+        }if (!playerAindaTemBarco) {
+            saveVencedor(playerDois);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Você ganhou," + playerDois.getNome() + "!" +"Clique em 'OK' para voltar para o menu.", ButtonType.OK);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.OK) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/menu-view.fxml"));
+                Parent root = loader.load();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
         }
     }
+
 }
 
 
