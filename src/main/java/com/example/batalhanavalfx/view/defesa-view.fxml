@@ -192,7 +192,7 @@
             <Image url="@pngwing.com (1).png" />
          </image>
       </ImageView>
-      <Button fx:id="verticalQuatroCanos" layoutX="595.0" layoutY="416.0" mnemonicParsing="false" text="Girar">
+      <Button fx:id="verticalQuatroCanos" layoutX="595.0" layoutY="416.0" mnemonicParsing="false" onAction="#flipImage" text="Girar">
          <font>
             <Font name="Book Antiqua" size="13.0" />
          </font></Button>

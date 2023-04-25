@@ -86,7 +86,7 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
             isFlippedBarcoQuatroCanos.set(!isFlippedBarcoQuatroCanos.get());
         }
     }
-    public void initialize(Player player) throws NullPointerException, IndexOutOfBoundsException, NegativeArraySizeException, ArrayIndexOutOfBoundsException, IllegalAccessError{
+    public void initialize(Player player) throws NullPointerException, IndexOutOfBoundsException, NegativeArraySizeException{
 
 
         Image resizedImage = new Image(barcoUmCano.getImage().getUrl(), 50, 50, false, false);
@@ -96,8 +96,8 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
         Image resizedImageTres = new Image(barcoTresCanos.getImage().getUrl(), 150, 70, false, false);
         barcoTresCanos.setImage(resizedImageTres);
         Image resizedImageQuatro = new Image(barcoQuatroCanos.getImage().getUrl(), 220, 75, false, false);
-                barcoQuatroCanos.setImage(resizedImageQuatro);
-        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 200, 115, false, false);
+        barcoQuatroCanos.setImage(resizedImageQuatro);
+        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 170, 115, false, false);
 
         portaAviao.setImage(resizedImagePortaAviao);
         for (Node node : gridDefesa.getChildren()) {
