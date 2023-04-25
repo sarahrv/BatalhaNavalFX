@@ -24,11 +24,8 @@ public abstract class AbstractBombasController implements IControllerTabuleiros 
         private Stage stage;
         private Scene scene;
 
-        //criar classe abstrata ou interface
         //ajeitar os cliques (colocar sleep ou alert)
-        //fazer ranking
 
-        //abstrata
         public abstract void getButtonsXY(ActionEvent event) throws IOException;
 
         public abstract void setPlayer(Player playerUm, Player playerDois);
@@ -52,18 +49,6 @@ public abstract class AbstractBombasController implements IControllerTabuleiros 
             }
         }
 
-        public void escreveArquivo(String fileName, String nome) throws IOException {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
-            writer.write(nome);
-            writer.newLine();
-            writer.close();
-        }
-
-        public void saveVencedor(Player vencedor) throws IOException {
-            String fileName = "vencedores.txt";
-            String nome = vencedor.getNome();
-            escreveArquivo(fileName, nome);
-        }
 
 
         public void checkTamanhoDoBarco() {

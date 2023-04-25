@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class BombasController extends AbstractBombasController {
@@ -38,15 +40,12 @@ public class BombasController extends AbstractBombasController {
         int row = GridPane.getRowIndex(clickedButton);
         int collumn = GridPane.getColumnIndex(clickedButton);
         int valorCelula = playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula();
-        System.out.println("entrou:" + playerUm.getNome() + " row " + row + " collumn " + collumn);
         System.out.println(playerDois.getNumBarcos());
-        System.out.println("" + playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
             numCliques++;
-            contaAcertos++;
-            clickedButton.setDisable(true);
             checkVitoria();
+            clickedButton.setDisable(true);
             playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
 
         } else {
@@ -64,6 +63,7 @@ public class BombasController extends AbstractBombasController {
     }
 
     public void switchPlayers(ActionEvent event) throws IOException {
+        checkVitoria();
         if (numCliques == 4) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/bombas-dois-view.fxml"));
             Parent root = loader.load();
@@ -84,13 +84,40 @@ public class BombasController extends AbstractBombasController {
 
     }
 
-    public void checkVitoria() throws IOException{
-        if (contaAcertos == playerDois.getNumBarcos()) {
-            Player vecendor = playerUm;
-            saveVencedor(vecendor);
-            System.out.println("player um ganhou");
-        }
+    public void escreveAqrquivo(String fileName, String content) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+        writer.write(content);
+        writer.newLine();
+        writer.close();
+    }
 
+    public void saveVencedor(Player vencedor, int numCliques) throws IOException {
+        String fileName = "vencedores.txt";
+        String nome = vencedor.getNome();
+        String conteudo = nome + "-" + numCliques;
+        escreveAqrquivo(fileName, conteudo);
+    }
+
+    public void checkVitoria() throws IOException {
+        boolean playerAindaTemBarco = false;
+        for (int row = 0; row < 10; row++) {
+            for (int column = 0; column < 10; column++) {
+                int cellValue = playerDois.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula();
+                if (cellValue == 1) {
+                    playerAindaTemBarco = true;
+                    break;
+                }
+            }
+            if (playerAindaTemBarco) {
+                break;
+            }
+
+
+        }if(!playerAindaTemBarco){
+            saveVencedor(playerDois, numCliques);
+            System.out.println("player dois ganhou");
+
+        }
     }
 }
 

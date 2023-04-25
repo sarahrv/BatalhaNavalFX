@@ -38,13 +38,10 @@ public class BombasDoisController extends AbstractBombasController {
         int row = GridPane.getRowIndex(clickedButton);
         int collumn = GridPane.getColumnIndex(clickedButton);
         int valorCelula = playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula();
-        System.out.println("entrou b2:"+playerDois.getNome()+" row "+row+" collumn "+collumn);
-        System.out.println(""+playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
         System.out.println(playerUm.getNumBarcos());
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
             clickedButton.setDisable(true);
-            numCliques ++;
             contaAcertos ++;
             checkVitoria();
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
@@ -61,6 +58,7 @@ public class BombasDoisController extends AbstractBombasController {
         this.playerDois = playerDois;
     }
     public void switchPlayers(ActionEvent event) throws IOException {
+        checkVitoria();
         if(numCliques == 4){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/bomba-view.fxml"));
             Parent root = loader.load();
@@ -85,20 +83,35 @@ public class BombasDoisController extends AbstractBombasController {
             String fileName = "vencedores.txt";
             String nome = vencedor.getNome();
             String conteudo = nome + "-" + numCliques;
-            escreveAqrquivo(fileName, nome);
+            escreveAqrquivo(fileName, conteudo);
         }
 
 
 
-        public void checkVitoria() throws IOException{
-            if (contaAcertos == playerUm.getNumBarcos()) {
-                Player vecendor = playerDois;
-                saveVencedor(vecendor, numCliques);
-                System.out.println("player um ganhou");
+    public void checkVitoria() throws IOException {
+        boolean playerAindaTemBarco = false;
+        for (int row = 0; row < 10; row++) {
+            for (int column = 0; column < 10; column++) {
+                int cellValue = playerUm.getTabuleiro().getMatrizBarcos()[row][column].getValorCelula();
+                if (cellValue == 1) {
+                    playerAindaTemBarco = true;
+                    break;
+                }
             }
+            if (playerAindaTemBarco) {
+                break;
+            }
+
+
+        }if(!playerAindaTemBarco){
+            saveVencedor(playerUm, numCliques);
+            System.out.println("player um ganhou");
 
         }
     }
+}
+
+
 
 
 
