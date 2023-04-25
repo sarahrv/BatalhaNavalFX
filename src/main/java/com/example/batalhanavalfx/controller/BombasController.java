@@ -7,7 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -19,16 +21,12 @@ public class BombasController extends AbstractBombasController {
     @FXML
     private GridPane board;
     private int numCliques = 0;
-    private int contaAcertos = 0;
     private Player playerUm;
     private Player playerDois;
 
     private Stage stage;
     private Scene scene;
 
-    //criar classe abstrata ou interface
-    //ajeitar os cliques (colocar sleep ou alert)
-    //fazer ranking
 
     public void getButtonsXY(ActionEvent event) throws IOException{
         switchPlayers(event);
@@ -41,6 +39,11 @@ public class BombasController extends AbstractBombasController {
         int collumn = GridPane.getColumnIndex(clickedButton);
         int valorCelula = playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula();
         System.out.println(playerDois.getNumBarcos());
+
+        System.out.println("entrou:" + playerUm.getNome() + " row " + row + " collumn " + collumn);
+        System.out.println(playerDois.getNumBarcos());
+        System.out.println("" + playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].getValorCelula());
+
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
             numCliques++;
@@ -55,6 +58,15 @@ public class BombasController extends AbstractBombasController {
             playerDois.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
         }
 
+    }
+
+    public void switchToMenuController(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/menu-view.fxml"));
+        Parent root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void setPlayer(Player playerUm, Player playerDois) {
@@ -79,10 +91,6 @@ public class BombasController extends AbstractBombasController {
 
 
 
-
-    public void checkTamanhoDoBarco() {
-
-    }
 
     public void escreveAqrquivo(String fileName, String content) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
@@ -119,6 +127,8 @@ public class BombasController extends AbstractBombasController {
 
         }
     }
+
+
 }
 
 

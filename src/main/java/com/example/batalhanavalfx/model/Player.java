@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Player {
     private String nome;
     private Tabuleiro tabuleiro;
+    private String modo;
+    private int numBarcos;
 
     public Player(String nome, Tabuleiro tabuleiro, int numBarcos, String modo) {
         this.modo = modo;
@@ -21,8 +23,6 @@ public class Player {
         this.numBarcos = numBarcos;
     }
 
-    private int numBarcos;
-
     public String getModo() {
         return modo;
     }
@@ -31,7 +31,6 @@ public class Player {
         this.modo = modo;
     }
 
-    private String modo;
     public Tabuleiro getTabuleiro() {
         return tabuleiro;
     }

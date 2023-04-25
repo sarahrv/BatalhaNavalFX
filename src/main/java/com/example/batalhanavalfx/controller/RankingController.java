@@ -21,17 +21,6 @@ public class RankingController {
     @FXML
     public TextArea winnerTextArea;
 
-    //botao pra voltar pro menu
-    //um ranking pra cada modo?
-
-    public void switchToMenuController(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/menu-view.fxml"));
-        Parent root = loader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
     public void displayWinners() {
         try (BufferedReader reader = new BufferedReader(new FileReader("vencedores.txt"))) {
             StringBuilder sb = new StringBuilder();
@@ -51,6 +40,14 @@ public class RankingController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public void switchToMenuController(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/batalhanavalfx/view/menu-view.fxml"));
+        Parent root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
 

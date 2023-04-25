@@ -50,11 +50,6 @@ public abstract class AbstractBombasController implements IControllerTabuleiros 
         }
 
 
-
-        public void checkTamanhoDoBarco() {
-
-        }
-
         public abstract void checkVitoria() throws IOException;
     }
 

@@ -16,10 +16,9 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 
-public abstract class AbstractDefesaController implements IControllerTabuleiros {
-    //colocar barcos quatro canos
-    //colocar barcos porta aviao
 
+import java.util.Objects;
+public abstract class AbstractDefesaController implements IControllerTabuleiros {
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -30,21 +29,14 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
     private ImageView barcoTresCanos;
     @FXML
     private ImageView barcoQuatroCanos;
-
     @FXML ImageView portaAviao;
     @FXML
     private GridPane gridDefesa;
-
     protected int contaUmCano = 0;
     protected int contaDoisCanos = 0;
-
     protected int contaTresCanos = 0;
-
     protected int contaQuatroCanos = 0;
-
-
     protected int contaPortaAviao = 0;
-
     protected int contaBarcos = 0;
 
 
@@ -56,6 +48,7 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
     private BooleanProperty isFlippedPortaAviao = new SimpleBooleanProperty(false);
 
     public abstract void setPlayer(Player playerUm, Player playerDois);
+
     public void flipImage(ActionEvent event) {
         Button btn = (Button) event.getSource();
         String id = btn.getId();
@@ -104,7 +97,8 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
         barcoTresCanos.setImage(resizedImageTres);
         Image resizedImageQuatro = new Image(barcoQuatroCanos.getImage().getUrl(), 296, 75, false, false);
         barcoQuatroCanos.setImage(resizedImageQuatro);
-        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 170, 100, false, false);
+        Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 200, 115, false, false);
+
         portaAviao.setImage(resizedImagePortaAviao);
         for (Node node : gridDefesa.getChildren()) {
             if (node instanceof StackPane) {
@@ -244,6 +238,8 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
 
                             contaPortaAviao ++;
                             contaBarcos ++;
+                            contaPortaAviao ++;
+
 
                         }stackPane.getChildren().add(droppedImageView);
 
