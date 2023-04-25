@@ -53,8 +53,11 @@ public class DefesaController extends AbstractDefesaController {
 
     public void handleProximoDois(ActionEvent event) throws IOException, NumeroDeBarcosException, NumeroDeBarcosCustomException {
         try {
-            if (playerUm.getModo().equals("normal") && contaUmCano < 4) {
-                throw new NumeroDeBarcosException();
+            if (playerUm.getModo().equals("normal") ) {
+                if(contaUmCano < 4 || contaDoisCanos < 3 || contaTresCanos < 2 || contaQuatroCanos < 1 || contaPortaAviao < 1){
+                    throw new NumeroDeBarcosException();
+                }
+
             }
 
             if (playerUm.getModo().equals("custom") && contaBarcos == 0) {
