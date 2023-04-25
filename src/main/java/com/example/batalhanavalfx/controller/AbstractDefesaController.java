@@ -86,7 +86,7 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
             isFlippedBarcoQuatroCanos.set(!isFlippedBarcoQuatroCanos.get());
         }
     }
-    public void initialize(Player player) throws NullPointerException, IndexOutOfBoundsException, NegativeArraySizeException, ArrayIndexOutOfBoundsException {
+    public void initialize(Player player) throws NullPointerException, IndexOutOfBoundsException, NegativeArraySizeException, ArrayIndexOutOfBoundsException, IllegalAccessError{
 
 
         Image resizedImage = new Image(barcoUmCano.getImage().getUrl(), 70, 90, false, false);
@@ -95,7 +95,7 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
         barcoDoisCanos.setImage(resizedImageDois);
         Image resizedImageTres = new Image(barcoTresCanos.getImage().getUrl(), 195, 92, false, false);
         barcoTresCanos.setImage(resizedImageTres);
-        Image resizedImageQuatro = new Image(barcoQuatroCanos.getImage().getUrl(), 296, 75, false, false);
+        Image resizedImageQuatro = new Image(barcoQuatroCanos.getImage().getUrl(), 280, 75, false, false);
         barcoQuatroCanos.setImage(resizedImageQuatro);
         Image resizedImagePortaAviao = new Image(portaAviao.getImage().getUrl(), 200, 115, false, false);
 
@@ -111,6 +111,7 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
                         ImageView image = (ImageView) event.getGestureSource();
                         int rowIndex = GridPane.getRowIndex(stackPane);
                         int colIndex = GridPane.getColumnIndex(stackPane);
+
 
                         if (image.getId().equals(barcoDoisCanos.getId()) && isFlippedBarcoDoisCanos.get() && rowIndex + 1 <= 9 && colIndex <= 9) {
                             if (player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex + 1][colIndex].getValorCelula()==0) {
@@ -143,7 +144,7 @@ public abstract class AbstractDefesaController implements IControllerTabuleiros 
                         else if(image.getId().equals(barcoUmCano.getId()) && player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex].getValorCelula() == 0){
                                 event.acceptTransferModes(TransferMode.MOVE);
                         }
-                        else if(image.getId().equals(portaAviao.getId()) && !isFlippedPortaAviao.get() && colIndex + 1 <= 9  && rowIndex + 2 <= 9) {
+                        else if(image.getId().equals(portaAviao.getId()) && !isFlippedPortaAviao.get() && colIndex + 1 <= 9  && rowIndex + 1 <= 9) {
                             if (player.getTabuleiro().getMatrizBarcos()[rowIndex - 1][colIndex].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex-1][colIndex+1].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex-1][colIndex+2].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex][colIndex+1].getValorCelula() == 0 && player.getTabuleiro().getMatrizBarcos()[rowIndex+1][colIndex+1].getValorCelula() == 0) {
                                 event.acceptTransferModes(TransferMode.MOVE);
                             }

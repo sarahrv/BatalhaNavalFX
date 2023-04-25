@@ -19,9 +19,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class BombasDoisController extends AbstractBombasController {
+
+    private int numCliques;
     @FXML
     private GridPane board;
-    private int numCliques = 0;
     private Player playerUm;
     private Player playerDois;
     private Stage stage;
@@ -29,6 +30,8 @@ public class BombasDoisController extends AbstractBombasController {
 
 
     public void getButtonsXY(ActionEvent event) throws IOException {
+        numCliques++;
+        playerDois.setNumTiros(numCliques);
         switchPlayers(event);
         if (numCliques == 4) {
             return;
@@ -42,15 +45,11 @@ public class BombasDoisController extends AbstractBombasController {
         if (valorCelula == 1) {
             clickedButton.setStyle("-fx-background-color: red;");
             clickedButton.setDisable(true);
-            numCliques++;
-            playerDois.setNumTiros(numCliques);
             checkVitoria();
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(2);
         } else {
             clickedButton.setStyle("-fx-background-color: blue;");
             clickedButton.setDisable(true);
-            numCliques++;
-            playerDois.setNumTiros(numCliques);
             playerUm.getTabuleiro().getMatrizBarcos()[row][collumn].setValorCelula(3);
         }
 
@@ -86,7 +85,7 @@ public class BombasDoisController extends AbstractBombasController {
     public void saveVencedor(Player vencedor) throws IOException {
             String fileName = "vencedores.txt";
             String nome = vencedor.getNome();
-            int numCliques = vencedor.getNumTiros();
+            int numCliques = vencedor.getNumTiros() - 1;
             String conteudo = nome + "-" + numCliques;
             escreveAqrquivo(fileName, conteudo);
     }
@@ -108,8 +107,8 @@ public class BombasDoisController extends AbstractBombasController {
 
         }
         if (!playerAindaTemBarco) {
-            saveVencedor(playerUm);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Você ganhou, " + playerUm.getNome() + "!", ButtonType.OK);
+            saveVencedor(playerDois);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Você ganhou, " + playerDois.getNome() + "!", ButtonType.OK);
             Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
             okButton.setOnAction(e -> {
                 Platform.exit();

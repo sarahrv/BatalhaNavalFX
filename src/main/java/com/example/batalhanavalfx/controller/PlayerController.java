@@ -48,13 +48,13 @@ public class PlayerController {
             ModoController controller = loader.getController();
             String nomeUm = nomePlayerUm.getText();
             String nomeDois = nomePlayerDois.getText();
-            int numBarcosUm = 0;
-            int numBarcosDois = 0;
+            int numTirosUm = 0;
+            int numTirosDois = 0;
             if (nomeUm.trim().length() < 3 || nomeDois.trim().length() < 3) {
                 throw new InputInvalidoException();
             }
-            Player playerUm = new Player(nomeUm, new Tabuleiro(), numBarcosUm, null);
-            Player playerDois = new Player(nomeDois, new Tabuleiro(), numBarcosDois, null);
+            Player playerUm = new Player(nomeUm, new Tabuleiro(), numTirosUm, null);
+            Player playerDois = new Player(nomeDois, new Tabuleiro(), numTirosDois, null);
             controller.setPlayer(playerUm, playerDois);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
